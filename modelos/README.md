@@ -1,2 +1,2 @@
-# uni-eventos
-Software para Eventos da Uninorte
+# UNI-OLYMPICS
+Software para Olympcis
