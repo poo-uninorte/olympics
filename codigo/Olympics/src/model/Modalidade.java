@@ -12,15 +12,19 @@ package model;
 public class Modalidade {
     private int ID;
     private String Nome;
+    private Esporte Esporte;
 
     public Modalidade() {
+        Esporte esporte = new Esporte();
     }
 
-    public Modalidade(int ID, String Nome) {
+    public Modalidade(int ID, String Nome, Esporte Esporte) {
         this.ID = ID;
         this.Nome = Nome;
+        this.Esporte = Esporte;
     }
-    
+
+        
     
     public int getID() {
         return ID;
@@ -36,6 +40,14 @@ public class Modalidade {
 
     public void setNome(String Nome) {
         this.Nome = Nome;
+    }
+
+    public Esporte getEsporte() {
+        return Esporte;
+    }
+
+    public void setEsporte(Esporte Esporte) {
+        this.Esporte = Esporte;
     }
     
     
