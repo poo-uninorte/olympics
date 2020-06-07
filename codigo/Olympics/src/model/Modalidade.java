@@ -13,6 +13,15 @@ public class Modalidade {
     private int ID;
     private String Nome;
 
+    public Modalidade() {
+    }
+
+    public Modalidade(int ID, String Nome) {
+        this.ID = ID;
+        this.Nome = Nome;
+    }
+    
+    
     public int getID() {
         return ID;
     }

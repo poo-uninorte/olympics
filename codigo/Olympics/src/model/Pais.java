@@ -12,11 +12,17 @@ package model;
 public class Pais {
        private int ID;
        private String Nome;
-       private int NumeroMedalhaOuro;
-       private int NumeroMedalhaPrata;
-       private int NumeroMedalhaBronze;
-       private int TotalMelha;
 
+    public Pais() {
+    }
+
+    public Pais(int ID, String Nome) {
+        this.ID = ID;
+        this.Nome = Nome;
+    }
+  
+
+       
     public int getID() {
         return ID;
     }
@@ -33,36 +39,6 @@ public class Pais {
         this.Nome = Nome;
     }
 
-    public int getNumeroMedalhaOuro() {
-        return NumeroMedalhaOuro;
-    }
-
-    public void setNumeroMedalhaOuro(int NumeroMedalhaOuro) {
-        this.NumeroMedalhaOuro = NumeroMedalhaOuro;
-    }
-
-    public int getNumeroMedalhaPrata() {
-        return NumeroMedalhaPrata;
-    }
-
-    public void setNumeroMedalhaPrata(int NumeroMedalhaPrata) {
-        this.NumeroMedalhaPrata = NumeroMedalhaPrata;
-    }
-
-    public int getNumeroMedalhaBronze() {
-        return NumeroMedalhaBronze;
-    }
-
-    public void setNumeroMedalhaBronze(int NumeroMedalhaBronze) {
-        this.NumeroMedalhaBronze = NumeroMedalhaBronze;
-    }
-
-    public int getTotalMelha() {
-        return TotalMelha;
-    }
-
-    public void setTotalMelha(int TotalMelha) {
-        this.TotalMelha = TotalMelha;
-    }
+   
        
 }

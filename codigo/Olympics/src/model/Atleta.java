@@ -12,11 +12,28 @@ package model;
 public class Atleta {
        private int ID;
        private String Nome;
-       private int NumeroMedalhaOuro;
-       private int NumeroMedalhaPrata;
-       private int NumeroMedalhaBronze;
-       private int TotalMelha;
+       private Medalha TipoMedalha;
+       private Modalidade Modalidade;
+       private Genero Genero;
+       private Pais Pais;
 
+    public Atleta() {
+      TipoMedalha = new Medalha ();
+      Modalidade = new Modalidade();
+      Genero = new Genero();
+      Pais = new Pais();
+    }
+
+       
+    public Atleta(int ID, String Nome, Medalha TipoMedalha, Modalidade Modalidade, Pais Pais) {
+        this.ID = ID;
+        this.Nome = Nome;
+        this.TipoMedalha = TipoMedalha;
+        this.Modalidade = Modalidade;
+        this.Pais = Pais;
+    }
+
+       
     public int getID() {
         return ID;
     }
@@ -32,40 +49,30 @@ public class Atleta {
     public void setNome(String Nome) {
         this.Nome = Nome;
     }
-
-    public int getNumeroMedalhaOuro() {
-        return NumeroMedalhaOuro;
-    }
-
-    public void setNumeroMedalhaOuro(int NumeroMedalhaOuro) {
-        this.NumeroMedalhaOuro = NumeroMedalhaOuro;
-    }
-
-    public int getNumeroMedalhaPrata() {
-        return NumeroMedalhaPrata;
-    }
-
-    public void setNumeroMedalhaPrata(int NumeroMedalhaPrata) {
-        this.NumeroMedalhaPrata = NumeroMedalhaPrata;
-    }
-
-    public int getNumeroMedalhaBronze() {
-        return NumeroMedalhaBronze;
-    }
-
-    public void setNumeroMedalhaBronze(int NumeroMedalhaBronze) {
-        this.NumeroMedalhaBronze = NumeroMedalhaBronze;
-    }
-
-    public int getTotalMelha() {
-        return TotalMelha;
-    }
-
-    public void setTotalMelha(int TotalMelha) {
-        this.TotalMelha = TotalMelha;
-    }
        
-       
-       
-       
+
+    public Medalha getTipoMedalha() {
+        return TipoMedalha;
+    }
+
+    public void setTipoMedalha(Medalha TipoMedalha) {
+        this.TipoMedalha = TipoMedalha;
+    }
+
+    public Modalidade getModalidade() {
+        return Modalidade;
+    }
+
+    public void setModalidade(Modalidade Modalidade) {
+        this.Modalidade = Modalidade;
+    }
+
+    public Pais getPais() {
+        return Pais;
+    }
+
+    public void setPais(Pais Pais) {
+        this.Pais = Pais;
+    }
+          
 }

@@ -13,6 +13,16 @@ public class Medalha {
     private int ID;
     private String Nome;
 
+    public Medalha() {
+    }
+ 
+    
+    public Medalha(int ID, String Nome) {
+        this.ID = ID;
+        this.Nome = Nome;
+    }
+
+       
     public int getID() {
         return ID;
     }

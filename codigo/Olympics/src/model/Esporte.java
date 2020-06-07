@@ -12,10 +12,19 @@ package model;
 public class Esporte {
     private int ID;
     private String Nome;
-    private int NumeroMedalhaOuro;
-    private int NumeroMedalhaPrata;
-    private int NumeroMedalhaBronze;
-    private int TotalMelha;
+    private  Modalidade Modalidade;
+
+    public Esporte() {
+        Modalidade = new Modalidade();
+    }
+    
+    public Esporte(int ID, String Nome, Modalidade Modalidade) {
+        this.ID = ID;
+        this.Nome = Nome;
+        this.Modalidade = Modalidade;
+    }
+    
+    
 
     public int getID() {
         return ID;
@@ -33,37 +42,14 @@ public class Esporte {
         this.Nome = Nome;
     }
 
-    public int getNumeroMedalhaOuro() {
-        return NumeroMedalhaOuro;
+    public Modalidade getModalidade() {
+        return Modalidade;
     }
 
-    public void setNumeroMedalhaOuro(int NumeroMedalhaOuro) {
-        this.NumeroMedalhaOuro = NumeroMedalhaOuro;
+    public void setModalidade(Modalidade Modalidade) {
+        this.Modalidade = Modalidade;
     }
 
-    public int getNumeroMedalhaPrata() {
-        return NumeroMedalhaPrata;
-    }
-
-    public void setNumeroMedalhaPrata(int NumeroMedalhaPrata) {
-        this.NumeroMedalhaPrata = NumeroMedalhaPrata;
-    }
-
-    public int getNumeroMedalhaBronze() {
-        return NumeroMedalhaBronze;
-    }
-
-    public void setNumeroMedalhaBronze(int NumeroMedalhaBronze) {
-        this.NumeroMedalhaBronze = NumeroMedalhaBronze;
-    }
-
-    public int getTotalMelha() {
-        return TotalMelha;
-    }
-
-    public void setTotalMelha(int TotalMelha) {
-        this.TotalMelha = TotalMelha;
-    }
-    
+   
     
 }

@@ -10,10 +10,8 @@ package view;
  * @author Caveirak52
  */
 public class Olympics extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
+    
+     
     public Olympics() {
         initComponents();
     }

@@ -11,8 +11,18 @@ package model;
  */
 public class Genero {
     private int ID;
-    private String NomeGenero;
+    private String Tipo;
 
+    public Genero() {
+    }
+    
+   
+    public Genero(int ID, String Tipo) {
+        this.ID = ID;
+        this.Tipo = Tipo;
+    }
+
+    
     public int getID() {
         return ID;
     }
@@ -21,12 +31,14 @@ public class Genero {
         this.ID = ID;
     }
 
-    public String getNomeGenero() {
-        return NomeGenero;
+    public String getTipo() {
+        return Tipo;
     }
 
-    public void setNomeGenero(String NomeGenero) {
-        this.NomeGenero = NomeGenero;
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
     }
+
+    
     
 }
