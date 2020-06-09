@@ -5,8 +5,7 @@
  */
 package controller;
 
-import connection.ConnectionFactory;
-import javax.swing.SwingConstants;
+
 import view.PaisView;
 
 /**
