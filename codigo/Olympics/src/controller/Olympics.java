@@ -6,6 +6,11 @@
 package controller;
 
 
+import view.AtletaView;
+import view.EsporteView;
+import view.GeneroView;
+import view.MedalhaView;
+import view.ModalidadeView;
 import view.PaisView;
 
 /**
@@ -34,7 +39,12 @@ public class Olympics extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        btnModalidd = new javax.swing.JRadioButtonMenuItem();
         btnPais = new javax.swing.JMenuItem();
+        BtnEsporte = new javax.swing.JRadioButtonMenuItem();
+        btnGenero = new javax.swing.JRadioButtonMenuItem();
+        btnAtleta = new javax.swing.JRadioButtonMenuItem();
+        btnModalidade = new javax.swing.JRadioButtonMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -44,7 +54,6 @@ public class Olympics extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         BemVindo.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
-        BemVindo.setForeground(new java.awt.Color(0, 0, 0));
         BemVindo.setText("Bem Vindo");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Olympics.png"))); // NOI18N
@@ -75,6 +84,15 @@ public class Olympics extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastro");
 
+        btnModalidd.setSelected(true);
+        btnModalidd.setText("Cadastro Medalhas");
+        btnModalidd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModaliddActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnModalidd);
+
         btnPais.setText("Cadastro de País");
         btnPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +100,42 @@ public class Olympics extends javax.swing.JFrame {
             }
         });
         jMenu1.add(btnPais);
+
+        BtnEsporte.setSelected(true);
+        BtnEsporte.setText("Cadastro de Esporte");
+        BtnEsporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEsporteActionPerformed(evt);
+            }
+        });
+        jMenu1.add(BtnEsporte);
+
+        btnGenero.setSelected(true);
+        btnGenero.setText("Cadastro Genero");
+        btnGenero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGeneroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnGenero);
+
+        btnAtleta.setSelected(true);
+        btnAtleta.setText("Cadastro Atleta");
+        btnAtleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtletaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnAtleta);
+
+        btnModalidade.setSelected(true);
+        btnModalidade.setText("Cadastro Modalidade");
+        btnModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModalidadeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnModalidade);
 
         jMenuBar1.add(jMenu1);
 
@@ -123,6 +177,32 @@ public class Olympics extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void btnModaliddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModaliddActionPerformed
+       MedalhaView medalhaView = new MedalhaView();
+       medalhaView.setVisible(true);
+    }//GEN-LAST:event_btnModaliddActionPerformed
+
+    private void BtnEsporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEsporteActionPerformed
+         EsporteView esporteView = new EsporteView ();
+         esporteView.setVisible (true);
+    }//GEN-LAST:event_BtnEsporteActionPerformed
+
+    private void btnModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModalidadeActionPerformed
+         ModalidadeView modalidadeView = new ModalidadeView ();
+         modalidadeView.setVisible (true);
+    }//GEN-LAST:event_btnModalidadeActionPerformed
+
+    private void btnGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneroActionPerformed
+
+        GeneroView generoView = new GeneroView ();
+         generoView.setVisible (true);
+    }//GEN-LAST:event_btnGeneroActionPerformed
+
+    private void btnAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtletaActionPerformed
+        AtletaView atletaView = new AtletaView ();
+         atletaView.setVisible (true);
+    }//GEN-LAST:event_btnAtletaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,6 +241,11 @@ public class Olympics extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BemVindo;
+    private javax.swing.JRadioButtonMenuItem BtnEsporte;
+    private javax.swing.JRadioButtonMenuItem btnAtleta;
+    private javax.swing.JRadioButtonMenuItem btnGenero;
+    private javax.swing.JRadioButtonMenuItem btnModalidade;
+    private javax.swing.JRadioButtonMenuItem btnModalidd;
     private javax.swing.JMenuItem btnPais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
