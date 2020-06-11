@@ -49,7 +49,7 @@ public class AtletaView extends javax.swing.JFrame {
         jCheckBoxFemiGeneroAtleta = new javax.swing.JCheckBox();
         jComboBoxNomePaisAteta = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
