@@ -6,11 +6,15 @@
 package controller;
 
 
+import view.AtletaBuscarView;
 import view.AtletaView;
+import view.EsporteBuscarView;
 import view.EsporteView;
-import view.GeneroView;
+import view.MedalhaBuscarView;
 import view.MedalhaView;
+import view.ModalidadeBuscarView;
 import view.ModalidadeView;
+import view.PaisBuscarView;
 import view.PaisView;
 
 /**
@@ -42,11 +46,14 @@ public class Olympics extends javax.swing.JFrame {
         btnModalidd = new javax.swing.JRadioButtonMenuItem();
         btnPais = new javax.swing.JMenuItem();
         BtnEsporte = new javax.swing.JRadioButtonMenuItem();
-        btnGenero = new javax.swing.JRadioButtonMenuItem();
         btnAtleta = new javax.swing.JRadioButtonMenuItem();
         btnModalidade = new javax.swing.JRadioButtonMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        Buscar = new javax.swing.JMenu();
+        BtnBuscarAtleta = new javax.swing.JMenuItem();
+        BtnBuscarPais = new javax.swing.JMenuItem();
+        BtnBuscarMedalha = new javax.swing.JMenuItem();
+        BtnBuscarModalidade = new javax.swing.JMenuItem();
+        BtnBuscarEsporte = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quandro de Medalhas");
@@ -110,15 +117,6 @@ public class Olympics extends javax.swing.JFrame {
         });
         jMenu1.add(BtnEsporte);
 
-        btnGenero.setSelected(true);
-        btnGenero.setText("Cadastro Genero");
-        btnGenero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGeneroActionPerformed(evt);
-            }
-        });
-        jMenu1.add(btnGenero);
-
         btnAtleta.setSelected(true);
         btnAtleta.setText("Cadastro Atleta");
         btnAtleta.addActionListener(new java.awt.event.ActionListener() {
@@ -139,17 +137,49 @@ public class Olympics extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Consulta");
+        Buscar.setText("Busca");
 
-        jMenuItem2.setText("Exemplo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        BtnBuscarAtleta.setText("Buscar atleta");
+        BtnBuscarAtleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                BtnBuscarAtletaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        Buscar.add(BtnBuscarAtleta);
 
-        jMenuBar1.add(jMenu2);
+        BtnBuscarPais.setText("Buscar país");
+        BtnBuscarPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarPaisActionPerformed(evt);
+            }
+        });
+        Buscar.add(BtnBuscarPais);
+
+        BtnBuscarMedalha.setText("Buscar Medalha");
+        BtnBuscarMedalha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarMedalhaActionPerformed(evt);
+            }
+        });
+        Buscar.add(BtnBuscarMedalha);
+
+        BtnBuscarModalidade.setText("Buscar Modalidade");
+        BtnBuscarModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarModalidadeActionPerformed(evt);
+            }
+        });
+        Buscar.add(BtnBuscarModalidade);
+
+        BtnBuscarEsporte.setText("Buscar Esporte");
+        BtnBuscarEsporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBuscarEsporteActionPerformed(evt);
+            }
+        });
+        Buscar.add(BtnBuscarEsporte);
+
+        jMenuBar1.add(Buscar);
 
         setJMenuBar(jMenuBar1);
 
@@ -173,10 +203,6 @@ public class Olympics extends javax.swing.JFrame {
        paisView.setVisible(true);
     }//GEN-LAST:event_btnPaisActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void btnModaliddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModaliddActionPerformed
        MedalhaView medalhaView = new MedalhaView();
        medalhaView.setVisible(true);
@@ -192,17 +218,41 @@ public class Olympics extends javax.swing.JFrame {
          modalidadeView.setVisible (true);
     }//GEN-LAST:event_btnModalidadeActionPerformed
 
-    private void btnGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneroActionPerformed
-
-        GeneroView generoView = new GeneroView ();
-         generoView.setVisible (true);
-    }//GEN-LAST:event_btnGeneroActionPerformed
-
     private void btnAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtletaActionPerformed
         AtletaView atletaView = new AtletaView ();
          atletaView.setVisible (true);
     }//GEN-LAST:event_btnAtletaActionPerformed
 
+    private void BtnBuscarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarPaisActionPerformed
+        // TODO add your handling code here:
+        PaisBuscarView PaisBuscar = new PaisBuscarView();
+        PaisBuscar.setVisible(true);
+    }//GEN-LAST:event_BtnBuscarPaisActionPerformed
+
+    private void BtnBuscarAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarAtletaActionPerformed
+        // TODO add your handling code here:
+        AtletaBuscarView AtletaBuscar = new AtletaBuscarView();
+        AtletaBuscar.setVisible(true);        
+    }//GEN-LAST:event_BtnBuscarAtletaActionPerformed
+
+    private void BtnBuscarMedalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarMedalhaActionPerformed
+        // TODO add your handling code here:
+        MedalhaBuscarView MedalhaBuscar = new MedalhaBuscarView();
+        MedalhaBuscar.setVisible(true);
+    }//GEN-LAST:event_BtnBuscarMedalhaActionPerformed
+
+    private void BtnBuscarModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarModalidadeActionPerformed
+        // TODO add your handling code here:
+        ModalidadeBuscarView ModalidadeBuscar = new ModalidadeBuscarView();
+        ModalidadeBuscar.setVisible(true);
+    }//GEN-LAST:event_BtnBuscarModalidadeActionPerformed
+
+    private void BtnBuscarEsporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarEsporteActionPerformed
+        // TODO add your handling code here:
+        EsporteBuscarView EsporteBuscar = new EsporteBuscarView();
+        EsporteBuscar.setVisible(true);
+    }//GEN-LAST:event_BtnBuscarEsporteActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -241,17 +291,20 @@ public class Olympics extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BemVindo;
+    private javax.swing.JMenuItem BtnBuscarAtleta;
+    private javax.swing.JMenuItem BtnBuscarEsporte;
+    private javax.swing.JMenuItem BtnBuscarMedalha;
+    private javax.swing.JMenuItem BtnBuscarModalidade;
+    private javax.swing.JMenuItem BtnBuscarPais;
     private javax.swing.JRadioButtonMenuItem BtnEsporte;
+    private javax.swing.JMenu Buscar;
     private javax.swing.JRadioButtonMenuItem btnAtleta;
-    private javax.swing.JRadioButtonMenuItem btnGenero;
     private javax.swing.JRadioButtonMenuItem btnModalidade;
     private javax.swing.JRadioButtonMenuItem btnModalidd;
     private javax.swing.JMenuItem btnPais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
