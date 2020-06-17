@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 /**
@@ -12,6 +8,7 @@ package model;
 public class Medalha {
     private int ID;
     private String Nome;
+ 
 
     public Medalha() {
     }
@@ -20,9 +17,8 @@ public class Medalha {
     public Medalha(int ID, String Nome) {
         this.ID = ID;
         this.Nome = Nome;
-    }
-
-       
+    }    
+    
     public int getID() {
         return ID;
     }
@@ -38,6 +34,9 @@ public class Medalha {
     public void setNome(String Nome) {
         this.Nome = Nome;
     }
-    
+
+    public String toString(){
+        return this.getNome();
+    }
     
 }

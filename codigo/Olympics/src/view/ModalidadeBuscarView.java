@@ -5,17 +5,26 @@
  */
 package view;
 
+import controller.ModalidadeController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Modalidade;
+
 /**
  *
  * @author SESACRE
  */
 public class ModalidadeBuscarView extends javax.swing.JFrame {
-
+    List<Modalidade> ListaModalidade = new ArrayList<>();
+    ModalidadeController mController = new ModalidadeController();
+    
     /**
      * Creates new form ModalidadeBuscarView
      */
     public ModalidadeBuscarView() {
         initComponents();
+        CarregarEsporte();
     }
 
     /**
@@ -35,10 +44,10 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         TxtNomeBuscarModalidade = new javax.swing.JTextField();
         BtnBuscarModalidade = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TabelaListaModalidade = new javax.swing.JTable();
+        tbListaModalidade = new javax.swing.JTable();
         LbInformarNomeModalidade = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         LbPesquisarModalidade.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         LbPesquisarModalidade.setText("PESQUISAR MODALIDADE");
@@ -69,7 +78,7 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
             }
         });
 
-        TabelaListaModalidade.setModel(new javax.swing.table.DefaultTableModel(
+        tbListaModalidade.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -77,9 +86,9 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
                 "Cod", "Nome", "Esporte"
             }
         ));
-        TabelaListaModalidade.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        TabelaListaModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jScrollPane2.setViewportView(TabelaListaModalidade);
+        tbListaModalidade.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tbListaModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(tbListaModalidade);
 
         LbInformarNomeModalidade.setText("Informe o nome ");
 
@@ -150,6 +159,7 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnListarTodasModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarTodasModalidadesActionPerformed
@@ -164,6 +174,24 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnBuscarModalidadeActionPerformed
 
+    private void CarregarEsporte(){
+        DefaultTableModel modeloTbMdalidade = (DefaultTableModel) tbListaModalidade.getModel();
+        
+        ListaModalidade = mController.Buscar();
+        modeloTbMdalidade.setRowCount(0);
+        
+        for(int i = 0;i < ListaModalidade.size();i++){
+            modeloTbMdalidade.addRow(new Object []{
+                ListaModalidade.get(i).getID(),
+                ListaModalidade.get(i).getNome(),
+                ListaModalidade.get(i).getEsporte().getNome()
+            });
+           
+        }
+    
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -206,9 +234,9 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
     private javax.swing.JLabel LbInformarNomeModalidade;
     private javax.swing.JLabel LbPesquisarModalidade;
     private javax.swing.JPanel PainelModalidadeBuscarView;
-    private javax.swing.JTable TabelaListaModalidade;
     private javax.swing.JTextField TxtNomeBuscarModalidade;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbListaModalidade;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,17 +5,28 @@
  */
 package view;
 
+import controller.MedalhaController;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import model.Medalha;
+
+
 /**
  *
  * @author Mateus
  */
 public class MedalhaView extends javax.swing.JFrame {
-
+    MedalhaController mController = new MedalhaController();
+    Medalha medalha = new Medalha();
     /**
      * Creates new form jframeMedalha
      */
     public MedalhaView() {
         initComponents();
+        txtCodMedalhas.setEnabled(false);
+        txtNomeMedalha.setEnabled(false);
+        btnCadastrarrMedalhas.setEnabled(false);
+        btnLimparMedalhas.setEnabled(false);
     }
 
     /**
@@ -35,16 +46,17 @@ public class MedalhaView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCodMedalhas = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtNomeMedalha = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
+        btnNovoMedalha = new javax.swing.JToggleButton();
+        txtNomeMedalha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabelCadastroMedalhas.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabelCadastroMedalhas.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
+        jLabelCadastroMedalhas.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCadastroMedalhas.setText("Cadastro de Medalhas");
 
         btnCadastrarrMedalhas.setText("Cadastrar");
@@ -61,18 +73,36 @@ public class MedalhaView extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nome da Medalha");
 
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Código");
 
         jScrollPane1.setViewportView(txtCodMedalhas);
 
-        jScrollPane2.setViewportView(txtNomeMedalha);
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kisspng-gold-medal-olympic-medal-bronze-medal-clip-art-olympic-medals-5a95ff404593e7.132185831519779648285.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
+
+        btnNovoMedalha.setText("Novo");
+        btnNovoMedalha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoMedalhaActionPerformed(evt);
+            }
+        });
+
+        txtNomeMedalha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNomeMedalhaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeMedalhaKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,48 +113,54 @@ public class MedalhaView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(111, 111, 111)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                            .addComponent(jLabelCadastroMedalhas, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNomeMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnLimparMedalhas)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCadastrarrMedalhas)
-                        .addGap(0, 47, Short.MAX_VALUE))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabelCadastroMedalhas, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnLimparMedalhas)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCadastrarrMedalhas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnNovoMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(33, 33, 33)
                 .addComponent(jLabelCadastroMedalhas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(txtNomeMedalha))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnNovoMedalha)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimparMedalhas)
                             .addComponent(btnCadastrarrMedalhas))
-                        .addGap(73, 73, 73))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))))
+                        .addGap(50, 50, 50))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,16 +175,78 @@ public class MedalhaView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparMedalhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparMedalhasActionPerformed
-        // TODO add your handling code here:
+       txtNomeMedalha.setText("");
     }//GEN-LAST:event_btnLimparMedalhasActionPerformed
 
     private void btnCadastrarrMedalhasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarrMedalhasActionPerformed
+
+        medalha.setNome(txtNomeMedalha.getText());
+        boolean salvar = mController.Salvar(medalha);
+        
+       if(txtNomeMedalha.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "Informe um Nome de Medalha","Medalha não Digitado",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(salvar){
+                JOptionPane.showMessageDialog(this, "Medalha: "+txtNomeMedalha.getText()+
+                        " salvo com sucesso! ", "Medalha Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+            
+            limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "A Medalha não pode ser salva! ","Medalha Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
         
     }//GEN-LAST:event_btnCadastrarrMedalhasActionPerformed
 
+    private void btnNovoMedalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoMedalhaActionPerformed
+        txtNomeMedalha.setEnabled(true);
+    }//GEN-LAST:event_btnNovoMedalhaActionPerformed
+
+    private void txtNomeMedalhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeMedalhaKeyReleased
+        if(3 <= txtNomeMedalha.getText().length()){
+            btnCadastrarrMedalhas.setEnabled(true);
+            btnLimparMedalhas.setEnabled(true);
+        }else{
+           btnCadastrarrMedalhas.setEnabled(false);
+           btnLimparMedalhas.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtNomeMedalhaKeyReleased
+
+    private void txtNomeMedalhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeMedalhaKeyPressed
+       if(evt.getKeyCode() == evt.VK_ENTER){
+       
+        medalha.setNome(txtNomeMedalha.getText());
+        boolean salvar = mController.Salvar(medalha);
+        
+       if(txtNomeMedalha.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "Informe um Nomde de Medalha","Medalha não Digitado",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(salvar){
+                JOptionPane.showMessageDialog(this, "Medalha: "+txtNomeMedalha.getText()+
+                        " salvo com sucesso! ", "Medalha Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+            
+            limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "A Medalha não pode ser salva! ","Medalha Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+              
+       }
+    }//GEN-LAST:event_txtNomeMedalhaKeyPressed
+
+    public void limparCampos(){
+    txtNomeMedalha.setText("");
+    txtNomeMedalha.requestFocus();
+    
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -188,14 +286,14 @@ public class MedalhaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarrMedalhas;
     private javax.swing.JButton btnLimparMedalhas;
+    private javax.swing.JToggleButton btnNovoMedalha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCadastroMedalhas;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane txtCodMedalhas;
-    private javax.swing.JTextPane txtNomeMedalha;
+    private javax.swing.JTextField txtNomeMedalha;
     // End of variables declaration//GEN-END:variables
 }

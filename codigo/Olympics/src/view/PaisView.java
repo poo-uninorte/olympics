@@ -5,20 +5,27 @@
  */
 package view;
 
+import controller.PaisController;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import model.Pais;
 
 /**
  *
  * @author Caveirak52
  */
 public class PaisView extends javax.swing.JFrame {
-
+    PaisController pController = new PaisController();
+    Pais pais = new Pais();
     /**
      * Creates new form PaisView
      */
     public PaisView() {
         initComponents();
         txtIdPais.setEnabled(false);
+        txtNomePais.setEnabled(false);
+        btnCadastrarPais.setEnabled(false);
+        btnLimparPais.setEnabled(false);
         
     }
 
@@ -40,6 +47,7 @@ public class PaisView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnCadastrarPais = new javax.swing.JButton();
         btnLimparPais = new javax.swing.JButton();
+        btnNovoPais = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,6 +55,7 @@ public class PaisView extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Código");
 
         txtIdPais.addActionListener(new java.awt.event.ActionListener() {
@@ -56,15 +65,20 @@ public class PaisView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nome do País");
 
         txtNomePais.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNomePaisKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomePaisKeyReleased(evt);
+            }
         });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cadastro de País");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pais.png"))); // NOI18N
@@ -89,6 +103,13 @@ public class PaisView extends javax.swing.JFrame {
             }
         });
 
+        btnNovoPais.setText("Novo");
+        btnNovoPais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoPaisActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPaisLayout = new javax.swing.GroupLayout(jPanelPais);
         jPanelPais.setLayout(jPanelPaisLayout);
         jPanelPaisLayout.setHorizontalGroup(
@@ -97,24 +118,27 @@ public class PaisView extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPaisLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
-                        .addComponent(btnLimparPais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(btnCadastrarPais)
-                        .addGap(42, 42, 42))
-                    .addGroup(jPanelPaisLayout.createSequentialGroup()
                         .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addGroup(jPanelPaisLayout.createSequentialGroup()
                                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(60, 60, 60)
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(239, Short.MAX_VALUE))
+                    .addGroup(jPanelPaisLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelPaisLayout.createSequentialGroup()
+                                .addComponent(btnLimparPais)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(btnCadastrarPais))
+                            .addComponent(btnNovoPais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42))))
         );
         jPanelPaisLayout.setVerticalGroup(
             jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,23 +148,23 @@ public class PaisView extends javax.swing.JFrame {
                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPaisLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPaisLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
-                .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPaisLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNovoPais)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCadastrarPais)
                             .addComponent(btnLimparPais))
                         .addGap(50, 50, 50))
                     .addGroup(jPanelPaisLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGap(59, 59, 59)
+                        .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelPaisLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))))
         );
@@ -165,11 +189,21 @@ public class PaisView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdPaisActionPerformed
 
     private void btnCadastrarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarPaisActionPerformed
-        if(txtNomePais.getText().equals("")){
-         JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
-        }else{
-        JOptionPane.showMessageDialog(null, "O país digitado foi : "+txtNomePais.getText(),"País Digitado",JOptionPane.WARNING_MESSAGE);
+      
         
+        if(txtNomePais.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
+        }else{
+              pais.setNome(txtNomePais.getText());
+                boolean salvar = pController.Salvar(pais);
+            if(salvar){
+                JOptionPane.showMessageDialog(this, "Pais: "+txtNomePais.getText()+
+                        " salvo com sucesso! ", "País Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+            
+            limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "O País não pode ser salvo! ","País Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
         
     }//GEN-LAST:event_btnCadastrarPaisActionPerformed
@@ -181,25 +215,55 @@ public class PaisView extends javax.swing.JFrame {
 
     private void btnCadastrarPaisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCadastrarPaisKeyPressed
        if(evt.getKeyCode() == evt.VK_ENTER){
-        if(txtNomePais.getText().equals("")){
-         JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
-        }else{
-        JOptionPane.showMessageDialog(null, "O país digitado foi : "+txtNomePais.getText(),"País Digitado",JOptionPane.WARNING_MESSAGE);
+         pais.setNome(txtNomePais.getText());
+        boolean salvar = pController.Salvar(pais);
         
+        if(txtNomePais.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(salvar){
+                JOptionPane.showMessageDialog(this, "Pais: "+txtNomePais.getText()+
+                        " salvo com sucesso! ", "País Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+            limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "O País não pode ser salvo! ","País Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
         }
     }//GEN-LAST:event_btnCadastrarPaisKeyPressed
 
     private void txtNomePaisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomePaisKeyPressed
        if(evt.getKeyCode() == evt.VK_ENTER){
-        if(txtNomePais.getText().equals("")){
-         JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
-        }else{
-        JOptionPane.showMessageDialog(null, "O país digitado foi : "+txtNomePais.getText(),"País Digitado",JOptionPane.WARNING_MESSAGE);
+         pais.setNome(txtNomePais.getText());
+        boolean salvar = pController.Salvar(pais);
         
-        }
+        if(txtNomePais.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "Informe um país","País não Digitado",JOptionPane.ERROR_MESSAGE);
+        }else{
+            if(salvar){
+                JOptionPane.showMessageDialog(this, "Pais: "+txtNomePais.getText()+
+                        " salvo com sucesso! ", "País Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+           limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "O País não pode ser salvo! ","País Error",JOptionPane.ERROR_MESSAGE);
+            }
+            }
         }
     }//GEN-LAST:event_txtNomePaisKeyPressed
+
+    private void btnNovoPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPaisActionPerformed
+        txtNomePais.setEnabled(true);
+    }//GEN-LAST:event_btnNovoPaisActionPerformed
+
+    private void txtNomePaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomePaisKeyReleased
+     if(3 <= txtNomePais.getText().length()){
+            btnCadastrarPais.setEnabled(true);
+            btnLimparPais.setEnabled(true);
+        }else{
+            btnCadastrarPais.setEnabled(false);
+              btnLimparPais.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtNomePaisKeyReleased
 
     /**
      * @param args the command line arguments
@@ -236,9 +300,18 @@ public class PaisView extends javax.swing.JFrame {
         });
     }
 
+    public void limparCampos(){
+    txtNomePais.setText("");
+    txtNomePais.requestFocus();
+    
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarPais;
     private javax.swing.JButton btnLimparPais;
+    private javax.swing.JToggleButton btnNovoPais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

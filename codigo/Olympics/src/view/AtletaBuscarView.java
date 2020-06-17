@@ -38,7 +38,7 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         TabelaListaAtleta = new javax.swing.JTable();
         LbInformarNomeAtleta = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("PESQUISAR ATLETAS");
@@ -92,15 +92,6 @@ public class AtletaBuscarView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(141, 141, 141))
             .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(BtnListarTodosAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 76, Short.MAX_VALUE))
-            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LbBuscarNomeAtleta)
@@ -113,7 +104,16 @@ public class AtletaBuscarView extends javax.swing.JFrame {
                                 .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(BtnBuscarAtleta)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
+            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(BtnListarTodosAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PainelAtletaBuscarViewLayout.setVerticalGroup(
             PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,9 +131,9 @@ public class AtletaBuscarView extends javax.swing.JFrame {
                     .addComponent(LbInformarNomeAtleta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(48, 48, 48)
+                .addGap(52, 52, 52)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(51, 51, 51))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,6 +148,7 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TxtNomeAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeAtletaActionPerformed

@@ -20,10 +20,10 @@ public class ConnectionFactory {
     
     public boolean getConnection(){
         try {
-            String url = "jdbc:sqlite:src/db/Olympics_DataBas.db";
+            String url = "jdbc:sqlite:src/db/Olympics_DataBase.db";
 
             this.conexao = DriverManager.getConnection(url);
-            JOptionPane.showMessageDialog(null,"Conectado com Sucesso");
+           
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro na conexao", JOptionPane.ERROR_MESSAGE);

@@ -6,15 +6,43 @@
 
 package view;
 
+import controller.AtletaController;
+import controller.MedalhaController;
+import controller.ModalidadeController;
+import controller.PaisController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Atleta;
+import model.Medalha;
+import model.Modalidade;
+import model.Pais;
+
+
 /**
  *
  * @author Mateus
  */
 public class AtletaView extends javax.swing.JFrame {
-
+    List<Atleta> ListaAtleta = new ArrayList<>();
+    AtletaController aController = new AtletaController();
+    Atleta atleta = new Atleta();
     /** Creates new form atletaView */
     public AtletaView() {
         initComponents();
+        carregarAtleta();
+        txtCodAtletas.setEnabled(false);
+        txtNomeAtleta.setEnabled(false);
+        LotarComboboxPais();
+        LotarComboboxMedalha();
+        LotarComboboxModalidade();
+        btnCadastrarAtletas.setEnabled(false);
+        btnLimparAtletas.setEnabled(false);
+        cbMedalhasAtleta.setEnabled(false);
+        cbModalidadeAtleta.setEnabled(false);
+        cbPaisAtleta.setEnabled(false);
     }
 
     /** This method is called from within the constructor to
@@ -26,34 +54,35 @@ public class AtletaView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        rbGeneroAtletaGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnLimparAtletas = new javax.swing.JButton();
         btnCadastrarAtletas = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtCodAtletas = new javax.swing.JTextPane();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtNomeAtleta = new javax.swing.JTextPane();
-        jCheckBoxOuroMedalhaAtleta = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        jCheckBoxPrataMedalhaAtleta = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jComboBox1ModalidadeAtleta = new javax.swing.JComboBox<>();
+        cbModalidadeAtleta = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jCheckBoxMascGeneroAtleta = new javax.swing.JCheckBox();
-        jCheckBoxFemiGeneroAtleta = new javax.swing.JCheckBox();
-        jComboBoxNomePaisAteta = new javax.swing.JComboBox<>();
+        cbPaisAtleta = new javax.swing.JComboBox<>();
+        cbMedalhasAtleta = new javax.swing.JComboBox<>();
+        txtNomeAtleta = new javax.swing.JTextField();
+        rbGeneroMascAtleta = new javax.swing.JRadioButton();
+        rbGeneroFeminiAtleta = new javax.swing.JRadioButton();
+        txtCodAtletas = new javax.swing.JTextField();
+        btnNovoAtleta = new javax.swing.JToggleButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbBuscaAtletaS = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Cadastro de Atletas");
 
         btnLimparAtletas.setText("Limpar");
@@ -72,111 +101,156 @@ public class AtletaView extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Código");
 
-        jScrollPane1.setViewportView(txtCodAtletas);
-
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nome");
 
-        jScrollPane2.setViewportView(txtNomeAtleta);
-
-        jCheckBoxOuroMedalhaAtleta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jCheckBoxOuroMedalhaAtleta.setText("Ouro");
-        jCheckBoxOuroMedalhaAtleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxOuroMedalhaAtletaActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Medalhas");
 
-        jCheckBoxPrataMedalhaAtleta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jCheckBoxPrataMedalhaAtleta.setText("Prata");
-
-        jCheckBox3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jCheckBox3.setText("Bronze");
-
-        jComboBox1ModalidadeAtleta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1ModalidadeAtleta.addActionListener(new java.awt.event.ActionListener() {
+        cbModalidadeAtleta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma Modalidade" }));
+        cbModalidadeAtleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ModalidadeAtletaActionPerformed(evt);
+                cbModalidadeAtletaActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Modalidade");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Genero");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("País");
 
-        jCheckBoxMascGeneroAtleta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jCheckBoxMascGeneroAtleta.setText("Masculino");
-        jCheckBoxMascGeneroAtleta.addActionListener(new java.awt.event.ActionListener() {
+        cbPaisAtleta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Pais" }));
+        cbPaisAtleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxMascGeneroAtletaActionPerformed(evt);
+                cbPaisAtletaActionPerformed(evt);
             }
         });
 
-        jCheckBoxFemiGeneroAtleta.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jCheckBoxFemiGeneroAtleta.setText("Feminino");
+        cbMedalhasAtleta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a Medalha" }));
+        cbMedalhasAtleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMedalhasAtletaActionPerformed(evt);
+            }
+        });
 
-        jComboBoxNomePaisAteta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtNomeAtleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeAtletaActionPerformed(evt);
+            }
+        });
+        txtNomeAtleta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeAtletaKeyReleased(evt);
+            }
+        });
+
+        rbGeneroAtletaGroup.add(rbGeneroMascAtleta);
+        rbGeneroMascAtleta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        rbGeneroMascAtleta.setText("Maculino");
+        rbGeneroMascAtleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbGeneroMascAtletaActionPerformed(evt);
+            }
+        });
+
+        rbGeneroAtletaGroup.add(rbGeneroFeminiAtleta);
+        rbGeneroFeminiAtleta.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        rbGeneroFeminiAtleta.setText("Feminino");
+
+        btnNovoAtleta.setText("Novo");
+        btnNovoAtleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoAtletaActionPerformed(evt);
+            }
+        });
+
+        tbBuscaAtletaS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Genero", "Pais", "Esporte", "Modalidade", "Medalha"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbBuscaAtletaS);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jComboBox1ModalidadeAtleta, javax.swing.GroupLayout.Alignment.LEADING, 0, 108, Short.MAX_VALUE)
-                                            .addComponent(jComboBoxNomePaisAteta, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(153, 153, 153)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBoxMascGeneroAtleta)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(btnLimparAtletas)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnCadastrarAtletas))
-                                        .addComponent(jCheckBoxFemiGeneroAtleta)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rbGeneroMascAtleta)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbGeneroFeminiAtleta)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbMedalhasAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(151, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jCheckBoxOuroMedalhaAtleta)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jCheckBoxPrataMedalhaAtleta)
-                                    .addGap(42, 42, 42)
-                                    .addComponent(jCheckBox3))))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                                    .addComponent(jLabel1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(cbPaisAtleta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(cbModalidadeAtleta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel2))))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnNovoAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLimparAtletas)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCadastrarAtletas)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,39 +261,39 @@ public class AtletaView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBoxOuroMedalhaAtleta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jCheckBoxPrataMedalhaAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jCheckBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBoxNomePaisAteta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbPaisAtleta, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(cbMedalhasAtleta)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(105, 105, 105)
                         .addComponent(jLabel2)))
-                .addGap(34, 34, 34)
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBoxMascGeneroAtleta)
-                    .addComponent(jCheckBoxFemiGeneroAtleta)
-                    .addComponent(jComboBox1ModalidadeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                    .addComponent(cbModalidadeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbGeneroMascAtleta)
+                    .addComponent(rbGeneroFeminiAtleta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoAtleta)
                     .addComponent(btnLimparAtletas)
                     .addComponent(btnCadastrarAtletas))
-                .addGap(28, 28, 28))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,32 +304,181 @@ public class AtletaView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparAtletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparAtletasActionPerformed
-        // TODO add your handling code here:
+        limparCampos();
+        
     }//GEN-LAST:event_btnLimparAtletasActionPerformed
 
     private void btnCadastrarAtletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAtletasActionPerformed
-
+       String sexo = ""; 
+       
+        Pais paisCB = null;
+        Medalha medalhaCB = null;
+        Modalidade modalidadeCB = null;
+        
+        paisCB = (Pais) cbPaisAtleta.getSelectedItem();
+        medalhaCB = (Medalha) cbMedalhasAtleta.getSelectedItem();
+        modalidadeCB = (Modalidade) cbModalidadeAtleta.getSelectedItem();
+              
+        atleta.setNome(txtNomeAtleta.getText());
+        
+        if(rbGeneroMascAtleta.isSelected()){
+            sexo = "Masculino";
+        }else if (rbGeneroFeminiAtleta.isSelected()){
+            sexo = "Feminino";
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um Sexo!");
+            sexo = null;
+        }
+        
+        atleta.setGenero(sexo);
+        atleta.setPais(paisCB);
+        atleta.setModalidade(modalidadeCB);
+        atleta.setTipoMedalha(medalhaCB);
+        
+       
+       
+        if(txtNomeAtleta.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Informe um Atleta","Atleta não Digitado",JOptionPane.ERROR_MESSAGE);
+        
+            }else{
+             boolean salvar = aController.Salvar(atleta);
+                if(salvar){
+                    JOptionPane.showMessageDialog(this, "Atleta: "+txtNomeAtleta.getText()+
+                        " salvo com sucesso! ", "Atleta Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+                limparCampos();
+               }else{
+                JOptionPane.showMessageDialog(this, "O Atleta não pode ser salvo! ","Atleta Error",JOptionPane.ERROR_MESSAGE);
+                }
+        }
+        carregarAtleta();
     }//GEN-LAST:event_btnCadastrarAtletasActionPerformed
 
-    private void jCheckBoxOuroMedalhaAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxOuroMedalhaAtletaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxOuroMedalhaAtletaActionPerformed
+    private void cbModalidadeAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbModalidadeAtletaActionPerformed
+        if(cbModalidadeAtleta.getSelectedItem()== "Selecione uma Modalidade"){
+                JOptionPane.showMessageDialog(null, "Selecione uma Modalidade Valida!","Erro na Opção",JOptionPane.ERROR_MESSAGE);
+                cbModalidadeAtleta.setSelectedIndex(1);
+        }
+    }//GEN-LAST:event_cbModalidadeAtletaActionPerformed
 
-    private void jComboBox1ModalidadeAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ModalidadeAtletaActionPerformed
+    private void txtNomeAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeAtletaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ModalidadeAtletaActionPerformed
+    }//GEN-LAST:event_txtNomeAtletaActionPerformed
 
-    private void jCheckBoxMascGeneroAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMascGeneroAtletaActionPerformed
+    private void rbGeneroMascAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbGeneroMascAtletaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxMascGeneroAtletaActionPerformed
+    }//GEN-LAST:event_rbGeneroMascAtletaActionPerformed
 
+    private void cbPaisAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPaisAtletaActionPerformed
+          if(cbPaisAtleta.getSelectedItem()== "Selecione um Pais"){
+                JOptionPane.showMessageDialog(null, "Selecione um País Valido!","Erro na Opção",JOptionPane.ERROR_MESSAGE);
+                cbPaisAtleta.setSelectedIndex(1);
+        }
+        
+        
+        
+    }//GEN-LAST:event_cbPaisAtletaActionPerformed
+
+    private void cbMedalhasAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMedalhasAtletaActionPerformed
+          if(cbMedalhasAtleta.getSelectedItem()== "Selecione a Medalha"){
+                JOptionPane.showMessageDialog(null, "Selecione uma Medalha Valida!","Erro na Opção",JOptionPane.ERROR_MESSAGE);
+                cbMedalhasAtleta.setSelectedIndex(1);
+        }
+    }//GEN-LAST:event_cbMedalhasAtletaActionPerformed
+
+    private void txtNomeAtletaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeAtletaKeyReleased
+          if(3 <= txtNomeAtleta.getText().length()){
+            btnCadastrarAtletas.setEnabled(true);
+            btnLimparAtletas.setEnabled(true);
+            cbMedalhasAtleta.setEnabled(true);
+            cbModalidadeAtleta.setEnabled(true);
+            cbPaisAtleta.setEnabled(true);
+            
+        }else{
+            btnCadastrarAtletas.setEnabled(false);
+            btnLimparAtletas.setEnabled(false);
+            cbMedalhasAtleta.setEnabled(false);
+            cbModalidadeAtleta.setEnabled(false);
+            cbPaisAtleta.setEnabled(false);
+            rbGeneroAtletaGroup.clearSelection();
+        }
+    }//GEN-LAST:event_txtNomeAtletaKeyReleased
+
+    private void btnNovoAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAtletaActionPerformed
+       txtNomeAtleta.setEnabled(true);
+    }//GEN-LAST:event_btnNovoAtletaActionPerformed
+
+    
+    private void LotarComboboxModalidade(){
+        ModalidadeController mController = new ModalidadeController();
+        mController.Buscar().forEach((p) -> {
+        cbModalidadeAtleta.addItem(p);
+        
+        });
+    
+    }
+    
+    
+    
+    
+    private void LotarComboboxPais(){
+        PaisController pController = new PaisController();
+        
+        pController.Buscar().forEach((p) -> {
+            cbPaisAtleta.addItem(p);
+        });
+    }
+    
+    
+    private void LotarComboboxMedalha(){
+        MedalhaController mController = new MedalhaController();
+        
+        mController.Buscar().forEach((p)->{
+            cbMedalhasAtleta.addItem(p);
+        });
+        
+        
+    
+    }
+    
+    private void carregarAtleta(){
+        DefaultTableModel modeloTbAtleta = (DefaultTableModel) tbBuscaAtletaS.getModel();
+        ListaAtleta = aController.Buscar();
+        modeloTbAtleta.setRowCount(0);
+        
+        for(int i = 0; i<ListaAtleta.size(); i++){
+        modeloTbAtleta.addRow(new Object[]{
+            ListaAtleta.get(i).getNome(),
+            ListaAtleta.get(i).getGenero(),
+            ListaAtleta.get(i).getPais().getNome(),
+            ListaAtleta.get(i).getModalidade().getEsporte().getNome(),
+            ListaAtleta.get(i).getModalidade().getNome(),
+            ListaAtleta.get(i).getTipoMedalha().getNome()
+        
+        });
+        
+        }
+        
+    
+    }
+    
+         private void limparCampos(){
+         txtNomeAtleta.setText("");
+        btnCadastrarAtletas.setEnabled(false);
+        btnLimparAtletas.setEnabled(false);
+        cbMedalhasAtleta.setEnabled(false);
+        cbModalidadeAtleta.setEnabled(false);
+        cbPaisAtleta.setEnabled(false);
+        rbGeneroAtletaGroup.clearSelection();
+         }
+    
     /**
      * @param args the command line arguments
      */
@@ -295,13 +518,10 @@ public class AtletaView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarAtletas;
     private javax.swing.JButton btnLimparAtletas;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBoxFemiGeneroAtleta;
-    private javax.swing.JCheckBox jCheckBoxMascGeneroAtleta;
-    private javax.swing.JCheckBox jCheckBoxOuroMedalhaAtleta;
-    private javax.swing.JCheckBox jCheckBoxPrataMedalhaAtleta;
-    private javax.swing.JComboBox<String> jComboBox1ModalidadeAtleta;
-    private javax.swing.JComboBox<String> jComboBoxNomePaisAteta;
+    private javax.swing.JToggleButton btnNovoAtleta;
+    private javax.swing.JComboBox<Object> cbMedalhasAtleta;
+    private javax.swing.JComboBox<Object> cbModalidadeAtleta;
+    private javax.swing.JComboBox<Object> cbPaisAtleta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -312,9 +532,12 @@ public class AtletaView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane txtCodAtletas;
-    private javax.swing.JTextPane txtNomeAtleta;
+    private javax.swing.ButtonGroup rbGeneroAtletaGroup;
+    private javax.swing.JRadioButton rbGeneroFeminiAtleta;
+    private javax.swing.JRadioButton rbGeneroMascAtleta;
+    private javax.swing.JTable tbBuscaAtletaS;
+    private javax.swing.JTextField txtCodAtletas;
+    private javax.swing.JTextField txtNomeAtleta;
     // End of variables declaration//GEN-END:variables
 
 }

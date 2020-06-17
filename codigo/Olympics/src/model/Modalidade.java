@@ -13,6 +13,11 @@ public class Modalidade {
     private int ID;
     private String Nome;
     private Esporte Esporte;
+    private int QTDOuro;
+    private int QTDPrata;
+    private int QTDBronze;
+    private int QTDTotal;
+    
 
     public Modalidade() {
         Esporte esporte = new Esporte();
@@ -22,6 +27,16 @@ public class Modalidade {
         this.ID = ID;
         this.Nome = Nome;
         this.Esporte = Esporte;
+    }
+
+    public Modalidade(int ID, String Nome, Esporte Esporte, int QTDOuro, int QTDPrata, int QTDBronze, int QTDTotal) {
+        this.ID = ID;
+        this.Nome = Nome;
+        this.Esporte = Esporte;
+        this.QTDOuro = QTDOuro;
+        this.QTDPrata = QTDPrata;
+        this.QTDBronze = QTDBronze;
+        this.QTDTotal = QTDTotal;
     }
 
         
@@ -49,6 +64,42 @@ public class Modalidade {
     public void setEsporte(Esporte Esporte) {
         this.Esporte = Esporte;
     }
+
+    public int getQTDOuro() {
+        return QTDOuro;
+    }
+
+    public void setQTDOuro(int QTDOuro) {
+        this.QTDOuro = QTDOuro;
+    }
+
+    public int getQTDPrata() {
+        return QTDPrata;
+    }
+
+    public void setQTDPrata(int QTDPrata) {
+        this.QTDPrata = QTDPrata;
+    }
+
+    public int getQTDBronze() {
+        return QTDBronze;
+    }
+
+    public void setQTDBronze(int QTDBronze) {
+        this.QTDBronze = QTDBronze;
+    }
+
+    public int getQTDTotal() {
+        return QTDTotal;
+    }
+
+    public void setQTDTotal(int QTDTotal) {
+        this.QTDTotal = QTDTotal;
+    }
     
     
+    @Override
+    public String toString(){
+        return this.getNome();
+    }
 }

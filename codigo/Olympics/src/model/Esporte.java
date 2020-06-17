@@ -12,9 +12,17 @@ package model;
 public class Esporte {
     private int ID;
     private String Nome;
-   
+    private int QTDOuro;
+    private int QTDPrata;
+    private int QTDBronze;
+    private int QTDTotal;
+       
     public Esporte() {
        
+    }
+
+    public Esporte(String Nome) {
+        this.Nome = Nome;
     }
     
     public Esporte(int ID, String Nome) {
@@ -22,6 +30,17 @@ public class Esporte {
         this.Nome = Nome;
         
     }
+
+    public Esporte(int ID, String Nome, int QTDOuro, int QTDPrata, int QTDBronze, int QTDTotal) {
+        this.ID = ID;
+        this.Nome = Nome;
+        this.QTDOuro = QTDOuro;
+        this.QTDPrata = QTDPrata;
+        this.QTDBronze = QTDBronze;
+        this.QTDTotal = QTDTotal;
+    }
+    
+    
     
     public int getID() {
         return ID;
@@ -37,6 +56,47 @@ public class Esporte {
 
     public void setNome(String Nome) {
         this.Nome = Nome;
+    }
+
+    public int getQTDOuro() {
+        return QTDOuro;
+    }
+
+    public void setQTDOuro(int QTDOuro) {
+        this.QTDOuro = QTDOuro;
+    }
+
+    public int getQTDPrata() {
+        return QTDPrata;
+    }
+
+    public void setQTDPrata(int QTDPrata) {
+        this.QTDPrata = QTDPrata;
+    }
+
+    public int getQTDBronze() {
+        return QTDBronze;
+    }
+
+    public void setQTDBronze(int QTDBronze) {
+        this.QTDBronze = QTDBronze;
+    }
+
+    public int getQTDTotal() {
+        return QTDTotal;
+    }
+
+    public void setQTDTotal(int QTDTotal) {
+        this.QTDTotal = QTDTotal;
+    }
+
+    
+    
+    
+    
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
     }
 
       
