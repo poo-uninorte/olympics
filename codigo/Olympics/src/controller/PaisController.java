@@ -18,7 +18,11 @@ public class PaisController {
     PaisDAO pais = new PaisDAO();
    
     public List<Pais> Buscar() {
-       return pais.Buscar();
+       return this.pais.Buscar();
+    }
+    
+      public List<Pais> BuscarPorNome(String NomePais) {
+       return this.pais.BuscarPorNome(NomePais);
     }
 
    
@@ -26,14 +30,14 @@ public class PaisController {
        return this.pais.Salvar(paises);
     }
 
- 
+    
     public boolean Editar(Pais paises) {
         return this.pais.Editar(paises);
     }
 
    
     public boolean Excluir(int codigo) {
-       return this.Excluir(codigo);
+       return this.pais.Excluir(codigo);
     }
     
 }

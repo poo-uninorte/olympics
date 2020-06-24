@@ -12,8 +12,6 @@ package model;
 public class Atleta {
        private int ID;
        private String Nome;
-       private Medalha TipoMedalha;
-       private Modalidade Modalidade;
        private String Genero;
        private Pais Pais;
        private int QTDOuro;
@@ -22,8 +20,7 @@ public class Atleta {
        private int QTDTotal;
 
     public Atleta() {
-      TipoMedalha = new Medalha ();
-      Modalidade = new Modalidade();
+    
       Pais = new Pais();
     }
 
@@ -35,18 +32,14 @@ public class Atleta {
     public Atleta(int ID, String Nome, Medalha TipoMedalha, Modalidade Modalidade,String Genero, Pais Pais) {
         this.ID = ID;
         this.Nome = Nome;
-        this.TipoMedalha = TipoMedalha;
         this.Genero = Genero;
-        this.Modalidade = Modalidade;
         this.Pais = Pais;
         
     }
 
-    public Atleta(int ID, String Nome, Medalha TipoMedalha, Modalidade Modalidade, String Genero, Pais Pais, int QTDOuro, int QTDPrata, int QTDBronze, int QTDTotal) {
+    public Atleta(int ID, String Nome, String Genero, Pais Pais, int QTDOuro, int QTDPrata, int QTDBronze, int QTDTotal) {
         this.ID = ID;
         this.Nome = Nome;
-        this.TipoMedalha = TipoMedalha;
-        this.Modalidade = Modalidade;
         this.Genero = Genero;
         this.Pais = Pais;
         this.QTDOuro = QTDOuro;
@@ -55,10 +48,6 @@ public class Atleta {
         this.QTDTotal = QTDTotal;
     }
 
-    
-    
-    
-    
        
     public int getID() {
         return ID;
@@ -76,23 +65,6 @@ public class Atleta {
         this.Nome = Nome;
     }
        
-
-    public Medalha getTipoMedalha() {
-        return TipoMedalha;
-    }
-
-    public void setTipoMedalha(Medalha TipoMedalha) {
-        this.TipoMedalha = TipoMedalha;
-    }
-
-    public Modalidade getModalidade() {
-        return Modalidade;
-    }
-
-    public void setModalidade(Modalidade Modalidade) {
-        this.Modalidade = Modalidade;
-    }
-
     public Pais getPais() {
         return Pais;
     }
@@ -141,6 +113,9 @@ public class Atleta {
         this.QTDTotal = QTDTotal;
     }
     
-    
+       @Override
+    public String toString(){
+        return getNome();
+    }
           
 }

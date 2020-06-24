@@ -20,6 +20,13 @@ public class AtletaController{
         return this.atleta.Buscar();
     }
 
+    public List<Atleta> BuscarPorNome(String nomeAtleta) {
+        return this.atleta.BuscarPorNome(nomeAtleta);
+    }
+    
+    
+    
+    
     public boolean Salvar(Atleta atleta) {
         return this.atleta.Salvar(atleta);
     }

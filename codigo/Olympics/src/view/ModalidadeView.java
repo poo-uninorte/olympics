@@ -206,11 +206,12 @@ public class ModalidadeView extends javax.swing.JFrame {
         
         Modalidade.setNome(txtNomeModalidade.getText());
         Modalidade.setEsporte(esportecb);
-        boolean salvar = mController.Salvar(Modalidade);
+        
         
         if(txtNomeModalidade.getText().equals("")){
                  JOptionPane.showMessageDialog(null, "Informe um Nome de uma Modalidade","Modalidade não Digitada",JOptionPane.ERROR_MESSAGE);
         }else{
+            boolean salvar = mController.Salvar(Modalidade);
             if(salvar){
                 JOptionPane.showMessageDialog(this, "Modalidade: "+txtNomeModalidade.getText()+
                         " salvo com sucesso! ", "Modalidade Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
