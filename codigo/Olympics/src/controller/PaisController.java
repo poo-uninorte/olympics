@@ -24,13 +24,19 @@ public class PaisController {
       public List<Pais> BuscarPorNome(String NomePais) {
        return this.pais.BuscarPorNome(NomePais);
     }
+       public List<Pais> BuscaTotalComMedalha() {
+       return this.pais.BuscaTotalComMedalha();
+    }
 
-   
+         public List<Pais> BuscaTotalComMedalhaPorNome(String NomePais) {
+       return this.pais.BuscaTotalComMedalhaPorNome(NomePais);
+    } 
+       
+       
     public boolean Salvar(Pais paises) {
        return this.pais.Salvar(paises);
     }
-
-    
+ 
     public boolean Editar(Pais paises) {
         return this.pais.Editar(paises);
     }

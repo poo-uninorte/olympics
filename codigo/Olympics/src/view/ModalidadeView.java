@@ -7,16 +7,20 @@ package view;
 
 import controller.EsporteController;
 import controller.ModalidadeController;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Esporte;
 import model.Modalidade;
 
 /**
  *
- * @author Mateus
+ * @author Caveirak52
  */
 public class ModalidadeView extends javax.swing.JFrame {
+     List<Modalidade> ListaModalidade = new ArrayList<>();
     ModalidadeController mController = new ModalidadeController();
     Modalidade Modalidade = new Modalidade();
     
@@ -25,11 +29,17 @@ public class ModalidadeView extends javax.swing.JFrame {
      */
     public ModalidadeView() {
         initComponents();
+        tbModalidade.getColumnModel().getColumn(0).setMinWidth(0);
+        tbModalidade.getColumnModel().getColumn(0).setMaxWidth(0);
         txtCodModalidades.setEnabled(false);
+        txtCodModalidades.setVisible(false);
         txtNomeModalidade.setEnabled(false);
         btnCadastrarModalidade.setEnabled(false);
         btnLimparModalidades.setEnabled(false);
+        btnAtualizarModalidade.setEnabled(false);
+        btnDeletarModalidade.setEnabled(false);
         cbEsporte.setEnabled(false);
+        CarreagarModalidade();
         LotaCombobox();
         
     }
@@ -48,14 +58,18 @@ public class ModalidadeView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLimparModalidades = new javax.swing.JButton();
         btnCadastrarModalidade = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         btnNovoModalida = new javax.swing.JToggleButton();
         txtNomeModalidade = new javax.swing.JTextField();
         txtCodModalidades = new javax.swing.JTextField();
         cbEsporte = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbModalidade = new javax.swing.JTable();
+        btnAtualizarModalidade = new javax.swing.JButton();
+        btnDeletarModalidade = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Modalidades");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -80,10 +94,6 @@ public class ModalidadeView extends javax.swing.JFrame {
                 btnCadastrarModalidadeActionPerformed(evt);
             }
         });
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Código");
 
         btnNovoModalida.setText("Novo");
         btnNovoModalida.addActionListener(new java.awt.event.ActionListener() {
@@ -114,68 +124,108 @@ public class ModalidadeView extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Esportes");
 
+        tbModalidade.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome Modalidade", "Nome Esporte"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbModalidade.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbModalidadeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbModalidade);
+        if (tbModalidade.getColumnModel().getColumnCount() > 0) {
+            tbModalidade.getColumnModel().getColumn(0).setResizable(false);
+            tbModalidade.getColumnModel().getColumn(1).setResizable(false);
+            tbModalidade.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        btnAtualizarModalidade.setText("Atualizar");
+        btnAtualizarModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarModalidadeActionPerformed(evt);
+            }
+        });
+
+        btnDeletarModalidade.setText("Deletar");
+        btnDeletarModalidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarModalidadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnNovoModalida, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnLimparModalidades)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCadastrarModalidade)))
-                        .addGap(42, 42, 42))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(txtCodModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(63, 63, 63)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbEsporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbEsporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(12, 12, 12))))
+                                .addGap(139, 139, 139)
+                                .addComponent(txtCodModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(46, Short.MAX_VALUE))))
+                        .addComponent(btnNovoModalida, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrarModalidade)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtualizarModalidade)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeletarModalidade)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimparModalidades))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel4))
+                            .addComponent(txtCodModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodModalidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
-                .addComponent(btnNovoModalida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cbEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoModalida)
                     .addComponent(btnCadastrarModalidade)
-                    .addComponent(btnLimparModalidades))
-                .addGap(39, 39, 39))
+                    .addComponent(btnLimparModalidades)
+                    .addComponent(btnAtualizarModalidade)
+                    .addComponent(btnDeletarModalidade))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -186,7 +236,7 @@ public class ModalidadeView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -194,7 +244,7 @@ public class ModalidadeView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparModalidadesActionPerformed
-        txtNomeModalidade.setText("");
+        limparCampos();
         cbEsporte.setEnabled(false);
         
     }//GEN-LAST:event_btnLimparModalidadesActionPerformed
@@ -215,7 +265,7 @@ public class ModalidadeView extends javax.swing.JFrame {
             if(salvar){
                 JOptionPane.showMessageDialog(this, "Modalidade: "+txtNomeModalidade.getText()+
                         " salvo com sucesso! ", "Modalidade Salvo", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
-            
+            CarreagarModalidade();
             limparCampos();
             }else{
                 JOptionPane.showMessageDialog(this, "A Modalidade não pode ser salva! ","Modalidade Error",JOptionPane.ERROR_MESSAGE);
@@ -233,25 +283,137 @@ public class ModalidadeView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeModalidadeActionPerformed
 
     private void txtNomeModalidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeModalidadeKeyReleased
-
+        if(0 <= txtNomeModalidade.getText().length()){
+        CarreagarModalidadePorNome(txtNomeModalidade.getText());
+        }
         if(3 <= txtNomeModalidade.getText().length()){
             btnCadastrarModalidade.setEnabled(true);
             btnLimparModalidades.setEnabled(true);
+            btnAtualizarModalidade.setEnabled(true);
+            btnDeletarModalidade.setEnabled(true);
             cbEsporte.setEnabled(true);
         }else{
             btnCadastrarModalidade.setEnabled(false);
             btnLimparModalidades.setEnabled(false);
+            btnAtualizarModalidade.setEnabled(false);
+            btnDeletarModalidade.setEnabled(false);
             cbEsporte.setEnabled(false);
         }
     }//GEN-LAST:event_txtNomeModalidadeKeyReleased
 
     private void cbEsporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEsporteActionPerformed
         if(cbEsporte.getSelectedItem()== "Selecione um Esporte"){
-        JOptionPane.showMessageDialog(null, "Selecione um País Valido!");
+        JOptionPane.showMessageDialog(null, "Selecione um Esporte Valido!");
         cbEsporte.setSelectedIndex(1);
         }
     }//GEN-LAST:event_cbEsporteActionPerformed
 
+    private void tbModalidadeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbModalidadeMouseClicked
+         if(tbModalidade.getSelectedRow() != -1){
+             btnAtualizarModalidade.setEnabled(true);
+             btnCadastrarModalidade.setEnabled(true);
+             btnDeletarModalidade.setEnabled(true);
+             btnLimparModalidades.setEnabled(true);
+             txtNomeModalidade.setEnabled(true);
+             txtCodModalidades.setText(tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 0).toString());
+              txtNomeModalidade.setText(tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 1).toString());
+        }else{
+            btnAtualizarModalidade.setEnabled(false);
+             btnCadastrarModalidade.setEnabled(false);
+             btnDeletarModalidade.setEnabled(false);
+             btnLimparModalidades.setEnabled(false);
+             txtNomeModalidade.setEnabled(false);
+        }
+    }//GEN-LAST:event_tbModalidadeMouseClicked
+
+    private void btnAtualizarModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarModalidadeActionPerformed
+            if(txtCodModalidades.getText().length()>0){
+             Modalidade.setID(Integer.parseInt(txtCodModalidades.getText()));
+             Modalidade.setNome(txtNomeModalidade.getText());
+             
+             Esporte esportecb = null;  
+
+           if(cbEsporte.getSelectedItem()== "Selecione um Esporte"){
+                JOptionPane.showMessageDialog(null, "Selecione um Esporte Para atualizar a modalidade!","Selecione um Esporte",JOptionPane.WARNING_MESSAGE);
+                cbEsporte.setSelectedIndex(1);
+                }else{
+                         esportecb = (Esporte) cbEsporte.getSelectedItem();
+                     }
+           
+             Modalidade.setEsporte(esportecb);
+             
+             boolean Editar = mController.Editar(Modalidade);
+             
+              if(Editar){
+                JOptionPane.showMessageDialog(this, "Modalidade: "+txtNomeModalidade.getText()+
+                        " Editado com sucesso! ", "Modalidade Editado", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+            CarreagarModalidade();
+            limparCampos();
+            }else{
+                JOptionPane.showMessageDialog(this, "A Modalidade não pode ser Editada! ","Modalidade Error",JOptionPane.ERROR_MESSAGE);
+            }
+             
+         }else{
+             JOptionPane.showMessageDialog(this, "Selecione alguma Modalidade para Editar ","Modalidade Error",JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnAtualizarModalidadeActionPerformed
+
+    private void btnDeletarModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarModalidadeActionPerformed
+         int input = JOptionPane.showConfirmDialog(null, "Você Realmente deseja Excluir essa Modalidade? ","Modalidade",JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+         
+        if (input == JOptionPane.YES_OPTION) {
+        if(tbModalidade.getSelectedRow() != -1){
+                 boolean excluir = mController.Excluir((int)tbModalidade.getValueAt(tbModalidade.getSelectedRow(), 0));
+
+             if(excluir){
+                    JOptionPane.showMessageDialog(this, "Modalidade Deletado com Sucesso", "Modalidade", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
+                CarreagarModalidade();
+                limparCampos();
+                }else{
+                    JOptionPane.showMessageDialog(this, "A Modalidade não pode ser Deletado! ","Modalidade Error",JOptionPane.ERROR_MESSAGE);
+                }
+
+
+           }else{
+                JOptionPane.showMessageDialog(this, "Selecione alguma Modalidade para deletar ","Modalidade Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnDeletarModalidadeActionPerformed
+
+    
+    private void CarreagarModalidade(){
+     DefaultTableModel modeloTbMdalidade = (DefaultTableModel) tbModalidade.getModel();
+        
+        ListaModalidade = mController.Buscar();
+        modeloTbMdalidade.setRowCount(0);
+        
+        for(int i = 0;i < ListaModalidade.size();i++){
+            modeloTbMdalidade.addRow(new Object []{
+                ListaModalidade.get(i).getID(),
+                ListaModalidade.get(i).getNome(),
+                ListaModalidade.get(i).getEsporte().getNome()
+            });
+           
+        }
+    }
+    
+      private void CarreagarModalidadePorNome(String NomeModalidade){
+     DefaultTableModel modeloTbMdalidade = (DefaultTableModel) tbModalidade.getModel();
+        
+        ListaModalidade = mController.BuscarPorNome(NomeModalidade);
+        if(ListaModalidade.size()>0){
+        modeloTbMdalidade.setRowCount(0);
+        
+        for(int i = 0;i < ListaModalidade.size();i++){
+            modeloTbMdalidade.addRow(new Object []{
+                ListaModalidade.get(i).getID(),
+                ListaModalidade.get(i).getNome(),
+                ListaModalidade.get(i).getEsporte().getNome()
+            });
+         }
+        }
+    }
     
     public void LotaCombobox(){
         EsporteController eController = new EsporteController();
@@ -264,6 +426,7 @@ public class ModalidadeView extends javax.swing.JFrame {
     
     public void limparCampos(){
     txtNomeModalidade.setText("");
+    txtCodModalidades.setText("");
     txtNomeModalidade.requestFocus();
     
     }
@@ -305,15 +468,18 @@ public class ModalidadeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizarModalidade;
     private javax.swing.JButton btnCadastrarModalidade;
+    private javax.swing.JButton btnDeletarModalidade;
     private javax.swing.JButton btnLimparModalidades;
     private javax.swing.JToggleButton btnNovoModalida;
     private javax.swing.JComboBox<Object> cbEsporte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbModalidade;
     private javax.swing.JTextField txtCodModalidades;
     private javax.swing.JTextField txtNomeModalidade;
     // End of variables declaration//GEN-END:variables

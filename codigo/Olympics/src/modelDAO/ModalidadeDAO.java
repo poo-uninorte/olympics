@@ -64,6 +64,50 @@ public class ModalidadeDAO{
         return ListaModalidade;
     }
 
+    
+    public List<Modalidade> BuscarPorNome(String NomeModalidade) {
+        List<Modalidade> ListaModalidade = new ArrayList<>();
+        con.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT "
+                + "m.ID_Modalidade,"
+                + "m.Nome as NomeModalidade,"
+                + "e.Nome "
+                + "FROM "
+                + "Modalidade m, "
+                + "Esporte e "
+                + "where "
+                + "m.ID_Esporte = e.ID_Esporte "
+                + "and NomeModalidade LIKE ?";
+        
+        try {
+            stmt = con.criarPreparedStatement(sql);
+            stmt.setString(1, '%'+NomeModalidade+'%');
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+              
+               Modalidade modalidade = new Modalidade();
+               Esporte esporte = new Esporte();
+               modalidade.setID(rs.getInt(1));
+               modalidade.setNome(rs.getString(2));
+               esporte.setNome(rs.getString(3));
+               modalidade.setEsporte(esporte) ;
+               ListaModalidade.add(modalidade);
+               
+            }
+              con.closeConnection();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+            con.closeConnection();
+        }
+        
+        return ListaModalidade;
+    }
+    
+    
  
     public boolean Salvar(Modalidade modalidade) {
         con.getConnection();
@@ -84,12 +128,40 @@ public class ModalidadeDAO{
 
   
     public boolean Editar(Modalidade modalidade) {
-        return true;
+         con.getConnection();
+        String sql = "UPDATE Modalidade SET Nome = ?, ID_Esporte = ? WHERE ID_Modalidade = ?";
+        PreparedStatement stmt = con.criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        try {
+            stmt.setString(1, modalidade.getNome());
+            stmt.setInt(2, modalidade.getEsporte().getID());
+            stmt.setInt(3, modalidade.getID());
+            stmt.executeUpdate();
+            con.closeConnection();
+            return true;
+        } catch (Exception e) {
+        return false;    
+        }
     }
 
   
-    public boolean Excluir(int codigo) {
-      return true;
+    public boolean Excluir(int cod) {
+       con.getConnection();
+        String sql = "DELETE FROM Modalidade WHERE ID_Modalidade = ?";
+        
+        PreparedStatement stmt = con.criarPreparedStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        
+        try {
+            stmt.setInt(1, cod);
+            stmt.executeUpdate();
+            
+            
+            con.closeConnection();
+           return true;
+        } catch (SQLException e) {
+            con.closeConnection();
+            return false;
+        }
     }
     
 }

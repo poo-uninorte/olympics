@@ -44,6 +44,7 @@ public class EsporteBuscarView extends javax.swing.JFrame {
         tbListaEsporte = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pódio de Esporte");
 
         PainelEsporteBuscarView.setBackground(new java.awt.Color(255, 255, 255));
 

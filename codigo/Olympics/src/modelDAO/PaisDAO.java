@@ -78,7 +78,71 @@ public class PaisDAO{
         return ListaPais;
     }
     
+    public List<Pais> BuscaTotalComMedalha(){
+     List<Pais> ListaPais = new ArrayList<>();
+       con.getConnection();
+       PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Podio_Pais";
+       
+        try {
+            stmt = con.criarPreparedStatement(sql);
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Pais pais = new Pais();
+                pais.setID(rs.getInt("IdPais"));
+                pais.setNome(rs.getString("NomePais"));
+                pais.setQTDOuro(rs.getInt("Medalha_Ouro"));
+                pais.setQTDPrata(rs.getInt("Medalha_Prata"));
+                pais.setQTDBronze(rs.getInt("Medalha_Broze"));
+                pais.setQTDTotal(rs.getInt("Medalha_Total"));
+                
+                ListaPais.add(pais);
+            }
+            con.closeConnection();
+        } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+        con.closeConnection();
+        }
 
+        return ListaPais;
+    }
+     
+    
+    public List<Pais> BuscaTotalComMedalhaPorNome(String NomePais){
+     List<Pais> ListaPais = new ArrayList<>();
+       con.getConnection();
+       PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Podio_Pais WHERE NomePais LIKE ?;";
+       
+        try {
+            stmt = con.criarPreparedStatement(sql);
+             stmt.setString(1, '%'+NomePais+'%');
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Pais pais = new Pais();
+                pais.setID(rs.getInt("IdPais"));
+                pais.setNome(rs.getString("NomePais"));
+                pais.setQTDOuro(rs.getInt("Medalha_Ouro"));
+                pais.setQTDPrata(rs.getInt("Medalha_Prata"));
+                pais.setQTDBronze(rs.getInt("Medalha_Broze"));
+                pais.setQTDTotal(rs.getInt("Medalha_Total"));
+                
+                ListaPais.add(pais);
+            }
+            con.closeConnection();
+        } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e);
+        con.closeConnection();
+        }
+
+        return ListaPais;
+    }
+     
+    
     public boolean Salvar(Pais pais) {
         con.getConnection();
         String sql = "INSERT INTO Pais (Nome) values (?)";
@@ -90,7 +154,7 @@ public class PaisDAO{
             stmt.executeUpdate();
             con.closeConnection();
                 return true;
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 con.closeConnection();
             return false;
             
@@ -110,7 +174,7 @@ public class PaisDAO{
             stmt.executeUpdate();
             con.closeConnection();
                 return true;
-            } catch (Exception ex) {
+            } catch (SQLException ex) {
                 con.closeConnection();
             return false;
             

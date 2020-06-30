@@ -13,7 +13,7 @@ import model.Pais;
 
 /**
  *
- * @author SESACRE
+ * @author Caveirak52
  */
 public class PaisBuscarView extends javax.swing.JFrame {
     List<Pais> ListaPais = new ArrayList<>();
@@ -23,6 +23,8 @@ public class PaisBuscarView extends javax.swing.JFrame {
      */
     public PaisBuscarView() {
         initComponents();
+        tbListaPais.getColumnModel().getColumn(0).setMinWidth(0);
+        tbListaPais.getColumnModel().getColumn(0).setMaxWidth(0);
         CarregaPais();
     }
 
@@ -38,58 +40,46 @@ public class PaisBuscarView extends javax.swing.JFrame {
         PainelPaisBuscarView = new javax.swing.JPanel();
         LbPesquisarPais = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BtnListarTodosPaises = new javax.swing.JButton();
-        LbBuscarNomePais = new javax.swing.JLabel();
         TxtNomeBuscarPais = new javax.swing.JTextField();
-        BtnBuscarPais = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbListaPais = new javax.swing.JTable();
         LbInformarNomePais = new javax.swing.JLabel();
+        btnAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pódio de Pais");
 
         PainelPaisBuscarView.setBackground(new java.awt.Color(255, 255, 255));
 
-        LbPesquisarPais.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        LbPesquisarPais.setText("PESQUISAR PAÍS");
+        LbPesquisarPais.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
+        LbPesquisarPais.setForeground(new java.awt.Color(0, 0, 0));
+        LbPesquisarPais.setText("PÓDIO DE PAÍS");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-
-        BtnListarTodosPaises.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        BtnListarTodosPaises.setText("LISTAR TODOS OS PAÍSES");
-        BtnListarTodosPaises.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnListarTodosPaisesActionPerformed(evt);
-            }
-        });
-
-        LbBuscarNomePais.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        LbBuscarNomePais.setText("BUSCAR POR UM PAÍS");
 
         TxtNomeBuscarPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNomeBuscarPaisActionPerformed(evt);
             }
         });
-
-        BtnBuscarPais.setText("OK");
-        BtnBuscarPais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarPaisActionPerformed(evt);
+        TxtNomeBuscarPais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtNomeBuscarPaisKeyReleased(evt);
             }
         });
 
+        tbListaPais.setAutoCreateRowSorter(true);
         tbListaPais.setBackground(new java.awt.Color(255, 255, 255));
         tbListaPais.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cod", "Nome"
+                "ID Pais", "Nome", "Ouro", "Prata", "Bronze", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,69 +87,85 @@ public class PaisBuscarView extends javax.swing.JFrame {
             }
         });
         tbListaPais.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tbListaPais.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        tbListaPais.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbListaPais.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListaPaisMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbListaPais);
+        if (tbListaPais.getColumnModel().getColumnCount() > 0) {
+            tbListaPais.getColumnModel().getColumn(0).setResizable(false);
+            tbListaPais.getColumnModel().getColumn(1).setResizable(false);
+            tbListaPais.getColumnModel().getColumn(2).setResizable(false);
+            tbListaPais.getColumnModel().getColumn(3).setResizable(false);
+            tbListaPais.getColumnModel().getColumn(4).setResizable(false);
+            tbListaPais.getColumnModel().getColumn(5).setResizable(false);
+        }
 
+        LbInformarNomePais.setForeground(new java.awt.Color(0, 0, 0));
         LbInformarNomePais.setText("Informe o nome ");
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelPaisBuscarViewLayout = new javax.swing.GroupLayout(PainelPaisBuscarView);
         PainelPaisBuscarView.setLayout(PainelPaisBuscarViewLayout);
         PainelPaisBuscarViewLayout.setHorizontalGroup(
             PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LbBuscarNomePais)
+                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addComponent(LbInformarNomePais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BtnBuscarPais)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(141, 141, 141))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelPaisBuscarViewLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnListarTodosPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(LbPesquisarPais)))
-                        .addGap(170, 170, 170))))
+                                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(LbInformarNomePais)
+                                    .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAtualizar))
+                            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
+                                .addComponent(LbPesquisarPais)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(141, 141, 141))
         );
         PainelPaisBuscarViewLayout.setVerticalGroup(
             PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(LbPesquisarPais)
-                .addGap(18, 18, 18)
-                .addComponent(BtnListarTodosPaises)
-                .addGap(18, 18, 18)
-                .addComponent(LbBuscarNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscarPais)
-                    .addComponent(LbInformarNomePais))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(227, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGap(193, 193, 193))
+            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
+                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(btnAtualizar))
+                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(LbPesquisarPais)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LbInformarNomePais)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,35 +176,70 @@ public class PaisBuscarView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnListarTodosPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarTodosPaisesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnListarTodosPaisesActionPerformed
-
     private void TxtNomeBuscarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeBuscarPaisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNomeBuscarPaisActionPerformed
 
-    private void BtnBuscarPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarPaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBuscarPaisActionPerformed
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+      CarregaPais();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void tbListaPaisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListaPaisMouseClicked
+        if(evt.getClickCount() == 2){
+            Pais pa = new Pais();
+            pa.setID((int) tbListaPais.getValueAt(tbListaPais.getSelectedRow(), 0)); 
+            pa.setNome((String) tbListaPais.getValueAt(tbListaPais.getSelectedRow(), 1));        
+            AtletasDePais ap = new AtletasDePais();
+            ap.setInfo(pa);
+            ap.setVisible(true);
+        
+        }
+    }//GEN-LAST:event_tbListaPaisMouseClicked
+
+    private void TxtNomeBuscarPaisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtNomeBuscarPaisKeyReleased
+        CarregaPaisPorNome(TxtNomeBuscarPais.getText());
+    }//GEN-LAST:event_TxtNomeBuscarPaisKeyReleased
 
     private void CarregaPais(){
         DefaultTableModel modeloTbPais = (DefaultTableModel) tbListaPais.getModel();
         
-        ListaPais = pController.Buscar();
+        ListaPais = pController.BuscaTotalComMedalha();
         modeloTbPais.setRowCount(0);
         
         for(int i = 0; i < ListaPais.size();i++){
             modeloTbPais.addRow(new Object[]{
                 ListaPais.get(i).getID(),
-                ListaPais.get(i).getNome()
+                ListaPais.get(i).getNome(),
+                ListaPais.get(i).getQTDOuro(),
+                ListaPais.get(i).getQTDPrata(),
+                ListaPais.get(i).getQTDBronze(),
+                ListaPais.get(i).getQTDTotal()
             });
         
         }
     
     }
     
+     private void CarregaPaisPorNome(String NomePais){
+        DefaultTableModel modeloTbPais = (DefaultTableModel) tbListaPais.getModel();
+        
+        ListaPais = pController.BuscaTotalComMedalhaPorNome(NomePais);
+        if(ListaPais.size()>0){
+        modeloTbPais.setRowCount(0);
+        for(int i = 0; i < ListaPais.size();i++){
+            modeloTbPais.addRow(new Object[]{
+                ListaPais.get(i).getID(),
+                ListaPais.get(i).getNome(),
+                ListaPais.get(i).getQTDOuro(),
+                ListaPais.get(i).getQTDPrata(),
+                ListaPais.get(i).getQTDBronze(),
+                ListaPais.get(i).getQTDTotal()
+                });
+            
+            }
+        }
     
+    }
     
     /**
      * @param args the command line arguments
@@ -236,13 +277,11 @@ public class PaisBuscarView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscarPais;
-    private javax.swing.JButton BtnListarTodosPaises;
-    private javax.swing.JLabel LbBuscarNomePais;
     private javax.swing.JLabel LbInformarNomePais;
     private javax.swing.JLabel LbPesquisarPais;
     private javax.swing.JPanel PainelPaisBuscarView;
     private javax.swing.JTextField TxtNomeBuscarPais;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbListaPais;

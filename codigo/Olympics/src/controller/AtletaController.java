@@ -25,8 +25,18 @@ public class AtletaController{
     }
     
     
+    public List<Atleta> BuscarTotalComMedalha() {
+        return this.atleta.BuscarTotalComMedalha();
+    }
     
+     public List<Atleta> BuscarTotalComMedalhaPorNome(String NomeAtleta) {
+        return this.atleta.BuscarTotalComMedalhaPorNome(NomeAtleta);
+    }
     
+       public List<Atleta> BuscarTotalComMedalhaPorId(int IdPais) {
+        return this.atleta.BuscarTotalComMedalhaPorId(IdPais);
+    }
+     
     public boolean Salvar(Atleta atleta) {
         return this.atleta.Salvar(atleta);
     }

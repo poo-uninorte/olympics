@@ -20,7 +20,9 @@ public class EsporteController{
     public List<Esporte> Buscar() {
         return this.esporte.Buscar();
     }
-
+    public List<Esporte> BuscarBuscarPorNome(String NomeEsporte) {
+           return this.esporte.BuscarPorNome(NomeEsporte);
+       }
     public boolean Salvar(Esporte esporte) {
         return this.esporte.Salvar(esporte);
     }

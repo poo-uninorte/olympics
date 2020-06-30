@@ -48,6 +48,7 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         LbInformarNomeModalidade = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pódio de Modalidade");
 
         LbPesquisarModalidade.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         LbPesquisarModalidade.setText("PESQUISAR MODALIDADE");

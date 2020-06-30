@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.sql.SQLException;
 import java.util.List;
 import model.Premiacao;
 import modelDAO.PremiacaoDAO;
@@ -28,12 +29,12 @@ public class PremiacaoController {
     return this.premiacao.BuscarPorNome(Nome);
     }
     
-    public boolean salvar(Premiacao premiacao){
+    public boolean salvar(Premiacao premiacao) throws SQLException{
     
     return this.premiacao.salvar(premiacao);
     }
     
-    public boolean editar(Premiacao premiacao){
+    public boolean editar(Premiacao premiacao)throws SQLException{
     
     return this.premiacao.editar(premiacao);
     }

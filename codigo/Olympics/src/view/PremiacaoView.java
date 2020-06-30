@@ -9,8 +9,11 @@ import controller.AtletaController;
 import controller.MedalhaController;
 import controller.ModalidadeController;
 import controller.PremiacaoController;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -42,9 +45,14 @@ public class PremiacaoView extends javax.swing.JFrame {
         LotaComboboxMedalha();
         CarregaPremiacao();
         txtIdPremiacao.setEnabled(false);
+        txtIdPremiacao.setVisible(false);
         cbAtleta.setEnabled(false);
         cbMedalha.setEnabled(false);
         cbModalidade.setEnabled(false);
+        btnAtualizarPremiacao.setEnabled(false);
+        btnCadastrar.setEnabled(false);
+        btnDeletarPremiacao.setEnabled(false);
+        btnLimparPremiacao.setEnabled(false);
         txtPesquisaPremiacao.setEnabled(false);
     }
 
@@ -66,7 +74,6 @@ public class PremiacaoView extends javax.swing.JFrame {
         cbMedalha = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtIdPremiacao = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         txtPesquisaPremiacao = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,6 +85,7 @@ public class PremiacaoView extends javax.swing.JFrame {
         btnDeletarPremiacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Premiação de Atleta");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,10 +125,6 @@ public class PremiacaoView extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Medalha");
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("ID");
 
         txtPesquisaPremiacao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -212,13 +216,11 @@ public class PremiacaoView extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(cbMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtIdPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addGap(26, 26, 26)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel6)
-                                .addComponent(txtPesquisaPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPesquisaPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(34, 34, 34)
+                            .addComponent(txtIdPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnNovoPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,15 +245,13 @@ public class PremiacaoView extends javax.swing.JFrame {
                         .addComponent(cbMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtIdPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPesquisaPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(txtPesquisaPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdPremiacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -281,7 +281,9 @@ public class PremiacaoView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -301,7 +303,12 @@ public class PremiacaoView extends javax.swing.JFrame {
         premiacao.setModalidade(modalidadecb);
         premiacao.setMedalha(medalhacb);
         
-        boolean salvar = pController.salvar(premiacao);
+        boolean salvar = false;
+        try {
+            salvar = pController.salvar(premiacao);
+        } catch (SQLException ex) {
+            Logger.getLogger(PremiacaoView.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
          if(salvar){
                 JOptionPane.showMessageDialog(this, "Atleta: "+atletacb.getNome()+
@@ -339,7 +346,11 @@ public class PremiacaoView extends javax.swing.JFrame {
     }//GEN-LAST:event_cbMedalhaActionPerformed
 
     private void btnNovoPremiacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoPremiacaoActionPerformed
-         cbAtleta.setEnabled(true);
+        btnAtualizarPremiacao.setEnabled(true);
+        btnCadastrar.setEnabled(true);
+        btnDeletarPremiacao.setEnabled(true);
+        btnLimparPremiacao.setEnabled(true);
+        cbAtleta.setEnabled(true);
         cbMedalha.setEnabled(true);
         cbModalidade.setEnabled(true);
         txtPesquisaPremiacao.setEnabled(true);
@@ -356,7 +367,14 @@ public class PremiacaoView extends javax.swing.JFrame {
     private void tbPremiacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPremiacaoMouseClicked
   
        if(tbPremiacao.getSelectedRow() != -1){ 
-          
+           btnAtualizarPremiacao.setEnabled(true);
+        btnCadastrar.setEnabled(true);
+        btnDeletarPremiacao.setEnabled(true);
+        btnLimparPremiacao.setEnabled(true);
+        cbAtleta.setEnabled(true);
+        cbMedalha.setEnabled(true);
+        cbModalidade.setEnabled(true);
+        txtPesquisaPremiacao.setEnabled(true);
          txtIdPremiacao.setText(tbPremiacao.getValueAt(tbPremiacao.getSelectedRow(), 0).toString());
         }
     }//GEN-LAST:event_tbPremiacaoMouseClicked
@@ -367,15 +385,38 @@ public class PremiacaoView extends javax.swing.JFrame {
         Modalidade modalidadecb = null;
         Medalha medalhacb = null;
         
-        atletacb = (Atleta) cbAtleta.getSelectedItem();
-        modalidadecb = (Modalidade) cbModalidade.getSelectedItem();
-        medalhacb = (Medalha) cbMedalha.getSelectedItem();
+        if(cbAtleta.getSelectedItem()== "Selecione um Atleta"){
+                JOptionPane.showMessageDialog(null, "Selecione um Atleta Para atualizar a Premiação!","Selecione um Atleta",JOptionPane.WARNING_MESSAGE);
+                cbAtleta.setSelectedIndex(1);
+                }else{
+                         atletacb = (Atleta) cbAtleta.getSelectedItem();
+                     }
+        
+          if(cbModalidade.getSelectedItem()== "Selecione uma Modalidade"){
+                JOptionPane.showMessageDialog(null, "Selecione uma Modalidade Para atualizar a Premiação!","Selecione uma Modalidade",JOptionPane.WARNING_MESSAGE);
+                cbModalidade.setSelectedIndex(1);
+                }else{
+                         modalidadecb = (Modalidade) cbModalidade.getSelectedItem();
+                     }
+        
+         if(cbMedalha.getSelectedItem()== "Selecione uma Medalha"){
+                JOptionPane.showMessageDialog(null, "Selecione uma Medalha Para atualizar a Premiação!","Selecione uma Medalha",JOptionPane.WARNING_MESSAGE);
+                cbMedalha.setSelectedIndex(1);
+                }else{
+                         medalhacb = (Medalha) cbMedalha.getSelectedItem();
+                     }
+       
         
         premiacao.setAtleta(atletacb);
         premiacao.setModalidade(modalidadecb);
         premiacao.setMedalha(medalhacb);
         premiacao.setID_Premiacao(Integer.parseInt(txtIdPremiacao.getText()));
-        boolean editar = pController.editar(premiacao);
+        boolean editar = false;
+          try {
+              editar = pController.editar(premiacao);
+          } catch (SQLException ex) {
+              Logger.getLogger(PremiacaoView.class.getName()).log(Level.SEVERE, null, ex);
+          }
         
          if(editar){
                 JOptionPane.showMessageDialog(this, "Atualização realizada com Sucesso", "Premiação", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("src/img/correct.png"));
@@ -530,7 +571,6 @@ public class PremiacaoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

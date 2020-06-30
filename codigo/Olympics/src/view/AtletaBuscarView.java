@@ -5,17 +5,30 @@
  */
 package view;
 
+import controller.AtletaController;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Atleta;
+
 /**
  *
  * @author SESACRE
  */
 public class AtletaBuscarView extends javax.swing.JFrame {
-
+     List<Atleta> ListaAtleta = new ArrayList<>();
+    AtletaController aController = new AtletaController();
+    Atleta atleta = new Atleta();
     /**
      * Creates new form AtletaBuscarView
      */
     public AtletaBuscarView() {
         initComponents();
+        BuscarTotalComMedalha();
+        TbListaAtleta.getColumnModel().getColumn(0).setMinWidth(200);
+        TbListaAtleta.getColumnModel().getColumn(0).setMaxWidth(200);
+        TbListaAtleta.getColumnModel().getColumn(1).setMinWidth(100);
+        TbListaAtleta.getColumnModel().getColumn(1).setMaxWidth(100);
     }
 
     /**
@@ -30,117 +43,123 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         PainelAtletaBuscarView = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BtnListarTodosAtletas = new javax.swing.JButton();
-        LbBuscarNomeAtleta = new javax.swing.JLabel();
         TxtNomeAtleta = new javax.swing.JTextField();
-        BtnBuscarAtleta = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TabelaListaAtleta = new javax.swing.JTable();
+        TbListaAtleta = new javax.swing.JTable();
         LbInformarNomeAtleta = new javax.swing.JLabel();
+        btnAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pódio de Atletas");
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("PESQUISAR ATLETAS");
+        PainelAtletaBuscarView.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("PÓDIO DE ATLETAS");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-
-        BtnListarTodosAtletas.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        BtnListarTodosAtletas.setText("Listar todos os atletas");
-        BtnListarTodosAtletas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnListarTodosAtletasActionPerformed(evt);
-            }
-        });
-
-        LbBuscarNomeAtleta.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        LbBuscarNomeAtleta.setText("Buscar por atleta");
 
         TxtNomeAtleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNomeAtletaActionPerformed(evt);
             }
         });
-
-        BtnBuscarAtleta.setText("OK");
-        BtnBuscarAtleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarAtletaActionPerformed(evt);
+        TxtNomeAtleta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtNomeAtletaKeyReleased(evt);
             }
         });
 
-        TabelaListaAtleta.setModel(new javax.swing.table.DefaultTableModel(
+        TbListaAtleta.setAutoCreateRowSorter(true);
+        TbListaAtleta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cod", "Nome", "Gênero   ", "Ouro", "Prata", "Bronze", "Total"
+                "Nome", "Gênero   ", "Ouro", "Prata", "Bronze", "Total"
             }
-        ));
-        TabelaListaAtleta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        TabelaListaAtleta.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jScrollPane2.setViewportView(TabelaListaAtleta);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TbListaAtleta.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        TbListaAtleta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(TbListaAtleta);
+        if (TbListaAtleta.getColumnModel().getColumnCount() > 0) {
+            TbListaAtleta.getColumnModel().getColumn(0).setResizable(false);
+            TbListaAtleta.getColumnModel().getColumn(1).setResizable(false);
+            TbListaAtleta.getColumnModel().getColumn(2).setResizable(false);
+            TbListaAtleta.getColumnModel().getColumn(3).setResizable(false);
+            TbListaAtleta.getColumnModel().getColumn(4).setResizable(false);
+            TbListaAtleta.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        LbInformarNomeAtleta.setForeground(new java.awt.Color(0, 0, 0));
         LbInformarNomeAtleta.setText("Informe o nome ");
+
+        btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PainelAtletaBuscarViewLayout = new javax.swing.GroupLayout(PainelAtletaBuscarView);
         PainelAtletaBuscarView.setLayout(PainelAtletaBuscarViewLayout);
         PainelAtletaBuscarViewLayout.setHorizontalGroup(
             PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAtualizar)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(141, 141, 141))
             .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(59, 59, 59)
                 .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LbBuscarNomeAtleta)
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addComponent(LbInformarNomeAtleta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                                .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnBuscarAtleta)))))
-                .addGap(0, 53, Short.MAX_VALUE))
-            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(BtnListarTodosAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbInformarNomeAtleta)
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PainelAtletaBuscarViewLayout.setVerticalGroup(
             PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
-                .addComponent(BtnListarTodosAtletas)
-                .addGap(27, 27, 27)
-                .addComponent(LbBuscarNomeAtleta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscarAtleta)
-                    .addComponent(LbInformarNomeAtleta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(52, 52, 52)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(193, 193, 193))
+                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                        .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(btnAtualizar))
+                            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(LbInformarNomeAtleta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 518, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,18 +174,56 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNomeAtletaActionPerformed
 
-    private void BtnListarTodosAtletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarTodosAtletasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnListarTodosAtletasActionPerformed
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        BuscarTotalComMedalha();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void BtnBuscarAtletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarAtletaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBuscarAtletaActionPerformed
+    private void TxtNomeAtletaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtNomeAtletaKeyReleased
+        BuscarTotalComMedalhaPorNome(TxtNomeAtleta.getText());
+    }//GEN-LAST:event_TxtNomeAtletaKeyReleased
 
+    private void BuscarTotalComMedalha(){
+        DefaultTableModel modeloTbAtleta = (DefaultTableModel) TbListaAtleta.getModel();
+        ListaAtleta = aController.BuscarTotalComMedalha();
+        modeloTbAtleta.setRowCount(0);
+        for(int i = 0;i<ListaAtleta.size();i++){
+           modeloTbAtleta.addRow(new Object[]{
+                ListaAtleta.get(i).getNome(),
+                ListaAtleta.get(i).getGenero(),
+                ListaAtleta.get(i).getQTDOuro(),
+                ListaAtleta.get(i).getQTDPrata(),
+                ListaAtleta.get(i).getQTDBronze(),
+                ListaAtleta.get(i).getQTDTotal()
+           
+           });
+        }
+    }
+    
+    
+      private void BuscarTotalComMedalhaPorNome(String NomeAtleta){
+        DefaultTableModel modeloTbAtleta = (DefaultTableModel) TbListaAtleta.getModel();
+        ListaAtleta = aController.BuscarTotalComMedalhaPorNome(NomeAtleta);
+        if(ListaAtleta.size()>0){
+            modeloTbAtleta.setRowCount(0);
+            for(int i = 0;i<ListaAtleta.size();i++){
+                modeloTbAtleta.addRow(new Object[]{
+                    ListaAtleta.get(i).getNome(),
+                    ListaAtleta.get(i).getGenero(),
+                    ListaAtleta.get(i).getQTDOuro(),
+                    ListaAtleta.get(i).getQTDPrata(),
+                    ListaAtleta.get(i).getQTDBronze(),
+                    ListaAtleta.get(i).getQTDTotal()
+                        
+                });
+            }
+          }
+      }
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+                
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -199,13 +256,11 @@ public class AtletaBuscarView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscarAtleta;
-    private javax.swing.JButton BtnListarTodosAtletas;
-    private javax.swing.JLabel LbBuscarNomeAtleta;
     private javax.swing.JLabel LbInformarNomeAtleta;
     private javax.swing.JPanel PainelAtletaBuscarView;
-    private javax.swing.JTable TabelaListaAtleta;
+    private javax.swing.JTable TbListaAtleta;
     private javax.swing.JTextField TxtNomeAtleta;
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;

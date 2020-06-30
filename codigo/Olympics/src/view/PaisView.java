@@ -27,14 +27,16 @@ public class PaisView extends javax.swing.JFrame {
      */
     public PaisView() {
         initComponents();
-         tbListaPais.getColumnModel().getColumn(0).setMinWidth(0);
+        tbListaPais.getColumnModel().getColumn(0).setMinWidth(0);
         tbListaPais.getColumnModel().getColumn(0).setMaxWidth(0);
         txtIdPais.setEnabled(false);
+        txtIdPais.setVisible(false);
         txtNomePais.setEnabled(false);
         btnCadastrarPais.setEnabled(false);
         btnLimparPais.setEnabled(false);
         btnAtualizarPais.setEnabled(false);
         btnDeletarPais.setEnabled(false);
+        
         CarregaPais();
         
     }
@@ -49,7 +51,6 @@ public class PaisView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelPais = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtIdPais = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtNomePais = new javax.swing.JTextField();
@@ -63,13 +64,9 @@ public class PaisView extends javax.swing.JFrame {
         btnDeletarPais = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de País");
 
         jPanelPais.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Código");
 
         txtIdPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,50 +163,42 @@ public class PaisView extends javax.swing.JFrame {
                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanelPaisLayout.createSequentialGroup()
-                        .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelPaisLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(jPanelPaisLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNovoPais, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrarPais)
-                .addGap(18, 18, 18)
-                .addComponent(btnAtualizarPais)
-                .addGap(18, 18, 18)
-                .addComponent(btnDeletarPais)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimparPais)
-                .addGap(0, 64, Short.MAX_VALUE))
+                .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPaisLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanelPaisLayout.createSequentialGroup()
+                        .addComponent(btnNovoPais, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrarPais)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtualizarPais)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeletarPais)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimparPais)
+                        .addGap(0, 12, Short.MAX_VALUE))))
         );
         jPanelPaisLayout.setVerticalGroup(
             jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPaisLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPaisLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanelPaisLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelPaisLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
+                .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomePais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,7 +214,7 @@ public class PaisView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelPais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -483,7 +472,6 @@ public class PaisView extends javax.swing.JFrame {
     private javax.swing.JButton btnDeletarPais;
     private javax.swing.JButton btnLimparPais;
     private javax.swing.JToggleButton btnNovoPais;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelPais;

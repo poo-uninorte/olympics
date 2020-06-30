@@ -22,7 +22,10 @@ public class ModalidadeController {
      public List<Modalidade> Buscar() {
         return this.modalidade.Buscar();
     }
-    
+      public List<Modalidade> BuscarPorNome(String NomeModalidade) {
+        return this.modalidade.BuscarPorNome(NomeModalidade);
+    }
+     
     public boolean Salvar(Modalidade modalidade) {
         return this.modalidade.Salvar(modalidade);
     }

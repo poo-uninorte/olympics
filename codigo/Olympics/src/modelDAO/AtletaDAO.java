@@ -110,6 +110,118 @@ public class AtletaDAO{
     }
   
   
+      public List<Atleta> BuscarTotalComMedalha() {
+       List<Atleta> ListAtleta =  new ArrayList<>();
+       con.getConnection();
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       String sql="SELECT * FROM Podio_Atleta;";
+               
+       
+       try {
+          stmt = con.criarPreparedStatement(sql);
+          rs = stmt.executeQuery();
+          
+          while(rs.next()){
+              Atleta at = new Atleta();
+         
+              at.setNome(rs.getString("NomeAtleta"));
+              at.setGenero(rs.getString("GeneroAtleta"));
+              at.setQTDOuro(rs.getInt("Medalha_de_Ouro"));
+              at.setQTDPrata(rs.getInt("Medalha_de_Prata"));
+              at.setQTDBronze(rs.getInt("Medalha_de_Bronze"));
+              at.setQTDTotal(rs.getInt("Total_de_Medalha"));
+             
+              ListAtleta.add(at);
+          }
+          con.closeConnection();
+      } catch (Exception e) {
+            con.closeConnection();
+            JOptionPane.showMessageDialog(null, e);
+          
+      }
+       
+       return  ListAtleta;
+    }
+    
+      
+       public List<Atleta> BuscarTotalComMedalhaPorId(int IdPais) {
+       List<Atleta> ListAtleta =  new ArrayList<>();
+       con.getConnection();
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       String sql="select * from Atleta_Por_Pais where IdPais = ?;";
+               
+       
+       try {
+          stmt = con.criarPreparedStatement(sql);
+          stmt.setInt(1,IdPais);
+          rs = stmt.executeQuery();
+          
+          while(rs.next()){
+              Atleta at = new Atleta();
+         
+              at.setNome(rs.getString("NomeAtleta"));
+              at.setGenero(rs.getString("GeneroAtleta"));
+              at.setQTDOuro(rs.getInt("Medalha_de_Ouro"));
+              at.setQTDPrata(rs.getInt("Medalha_de_Prata"));
+              at.setQTDBronze(rs.getInt("Medalha_de_Bronze"));
+              at.setQTDTotal(rs.getInt("Total_de_Medalha"));
+             
+              ListAtleta.add(at);
+          }
+          con.closeConnection();
+      } catch (Exception e) {
+            con.closeConnection();
+            JOptionPane.showMessageDialog(null, e);
+          
+      }
+       
+       return  ListAtleta;
+    }
+    
+      
+      
+    public List<Atleta> BuscarTotalComMedalhaPorNome(String NomeAtleta) {
+       List<Atleta> ListAtleta =  new ArrayList<>();
+       con.getConnection();
+       PreparedStatement stmt = null;
+       ResultSet rs = null;
+       
+       String sql="SELECT * FROM Podio_Atleta WHERE NomeAtleta LIKE ?;";
+               
+       
+       try {
+           
+          stmt = con.criarPreparedStatement(sql);
+          stmt.setString(1, '%'+NomeAtleta+'%');
+          rs = stmt.executeQuery();
+          
+          while(rs.next()){
+              Atleta at = new Atleta();
+         
+              at.setNome(rs.getString("NomeAtleta"));
+              at.setGenero(rs.getString("GeneroAtleta"));
+              at.setQTDOuro(rs.getInt("Medalha_de_Ouro"));
+              at.setQTDPrata(rs.getInt("Medalha_de_Prata"));
+              at.setQTDBronze(rs.getInt("Medalha_de_Bronze"));
+              at.setQTDTotal(rs.getInt("Total_de_Medalha"));
+             
+              ListAtleta.add(at);
+          }
+          con.closeConnection();
+      } catch (Exception e) {
+            con.closeConnection();
+            JOptionPane.showMessageDialog(null, e);
+          
+      }
+       
+       return  ListAtleta;
+    }
+    
+    
   
     public boolean Salvar(Atleta atleta) {
         
@@ -148,7 +260,7 @@ public class AtletaDAO{
             con.closeConnection();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+           
             con.closeConnection();
             return false;
         }
