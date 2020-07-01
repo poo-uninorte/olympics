@@ -112,3 +112,98 @@
 	5.4. Botão limpar  
 	
 	* Caso queira resetar antes da conclusão, algum artefato que está na lacuna para cadastro, exclusão ou atualização. Pressione o botão limpar. Esta opção auxilia o usuário a descontinuar uma ação a contra gosto.
+
+6. Menu “Busca”
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86288059-e4781500-bbae-11ea-9239-bd369e9ae7e7.jpg">
+	</p>
+		
+	* O menu busca permite ao usuário pesquisar no banco de dados do sistema os atletas, países, medalhas, modalidades e esportes que estão cadastrados.
+
+		* Funcionamento
+	
+			* Ao clicar em buscar as opções mencionadas acima aparecerão.
+
+	6.1. Item de menu “Buscar Atleta” 
+		
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86288083-e9d55f80-bbae-11ea-9e74-2909e6ed128c.jpg">
+	</p>
+		
+	* Este item abre uma tela informando sobre o pódio de atletas, neste caso, é mostrado um pódio que é classificado de acordo com a quantidade de medalhas de ouro. Ela contém uma caixa de texto em que é possível fazer busca automática na lista de atletas cadastrados. Esta lista se dispõe logo abaixo e contém informações como o nome do atleta, seu gênero, o número de medalhas que possui e o total de medalhas ganhas, porém é possível visualizar apenas os atletas que possuem alguma medalha. Por padrão a lista já vem ordenada conforme o número de medalhas de Ouro, depois Prata e Por último Bronze. 
+	* Cada campo dessa lista ao ser clicado permite fazer um tipo de ordenação, para facilitar a navegação e aumentar a praticidade:
+		
+		* Coluna Nome: permite ordenar os nomes da lista em ordem alfabética crescente e decrescente;
+		* Coluna Gênero: ordena pelo gênero masculino ou feminino (é feito um ordenamento);
+		* Coluna Ouro: ordena pelo número de medalhas de ouro crescente e decrescente;
+		* Coluna Prata: ordena pelo número de medalhas de Prata crescente e decrescente;
+		* Coluna Bronze: ordena pelo número de medalhas de Bronze crescente e decrescente;
+		* Coluna Total: ordena pelo total de medalhas adquiridas. Pode ser por ordem crescente ou decrescente também. 
+
+	* O botão Atualizar permite atualizar a tabela caso seja feita simultâneamente uma alteração em algum registro. Por exemplo, ao exibir o pódio de atletas e por acaso querermos fazer a premiação de alguma medalha em outra tela, a tela de busca não atualiza automaticamente, a(s) medalha(s) ou outra(s) alteração(ões) feita(s), então este botão faz um refresh na tabela. 
+
+	6.2. Item de menu “Buscar País” 
+		
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86288025-de823400-bbae-11ea-8ed8-cb10bb764b2f.jpg">
+	</p>
+		
+	* Este item abre uma tela informando sobre o pódio de países conforme o número de medalhas ganhas pelos seus atletas. O pódio principal contém a colocação dos 3 primeiros colocados de acordo com a quantidade de medalhas de ouro. Ela contém uma caixa de texto em que é possível fazer busca automática na lista de países cadastrados. Essa lista se dispõe logo abaixo e contém informações como o nome do país, a quantidade de medalhas que possui e o total de medalhas ganhas, porém, é possível visualizar apenas os países que possuem medalhas. Por padrão a lista já vem ordenada conforme o número de medalhas de Ouro, depois Prata e por último Bronze. 
+	* Cada campo dessa lista ao ser clicado permite fazer um tipo de ordenação, para facilitar a navegação e aumentar a praticidade:
+		* Coluna Nome: permite ordenar os nomes da lista em ordem alfabética crescente ou decrescente;
+		* Coluna Ouro: ordena pelo número de medalhas de ouro crescente ou decrescente;
+		* Coluna Prata: ordena pelo número de medalhas de Prata crescente ou decrescente;
+		* Coluna Bronze: ordena pelo número de medalhas de Bronze crescente ou decrescente;
+		* Coluna Total: ordena pelo total de medalhas adquiridas. Pode ser por ordem crescente ou decrescente também. 
+
+	* O botão Atualizar permite atualizar a tabela caso seja feita simultâneamente uma alteração em algum registro. Por exemplo, ao exibir o pódio de países e por acaso querermos fazer uma premiação de alguma medalha para algum atleta que pertence a um país, em outra tela, a tela de busca não atualiza automaticamente, a(s) medalha(s) ou outra(s) alteração(ões) feita(s), então este botão faz um refresh na tabela. 
+
+	6.3. Item de menu “Buscar Medalhas”
+		
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86289768-df689500-bbb1-11ea-8023-5a375d752094.jpg">
+	</p>
+		
+	* Esta opção está restrita aos usuários do sistema. Este item ao ser clicado solicita uma senha, esta libera o cadastro de novas medalhas e atualização das mesmas. O motivo disso é que só existem 3 tipos de medalhas e também para não cause problemas em cascata no sistema. Portanto, o intuito de manter isso são possíveis manutenções e melhorias futuras no sistema.
+
+	6.4. Item de menu “Buscar Modalidade”
+		
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86289771-e099c200-bbb1-11ea-9542-2751a7fc69fe.jpg">
+	</p>
+	
+	* Esta opção permite ao usuário fizer uma busca automática na lista de modalidades cadastradas informando o nome da mesma no campo específico e clicando no botão “OK”. Logo abaixo, existe uma tabela que permite visualizar o código identificador da modalidade,  nome dela e o esporte ao qual ela pertence. A priori  a ordem pré estabelecida na tabela segue a ordem de cadastro, ou seja, do mais antigo para o mais atual.
+		
+	6.5. Item de menu “Buscar Esporte”
+	
+	<p align="center">
+	<img src="https://user-images.githubusercontent.com/39633455/86289775-e2638580-bbb1-11ea-95ce-c633199b5f99.jpg">
+	</p>
+
+	* Esta opção permite ao usuário fizer uma busca automática na lista de esportes cadastradas informando o nome do mesmo no campo específico e clicando no botão “OK”. Logo abaixo, existe uma tabela que permite visualizar o código identificador do esporte e o seu nome. A priori  a ordem pré estabelecida na tabela segue a ordem de cadastro, ou seja, do mais antigo para o mais atual.
+
+
+7. Menu “Premiação”
+		<p align="center">
+		<img src="https://user-images.githubusercontent.com/39633455/86288067-e6da6f00-bbae-11ea-8651-5eddad6c99de.jpg"></br>
+		<img src="https://user-images.githubusercontent.com/39633455/86288072-e7730580-bbae-11ea-9303-bd16bb25f584.jpg">
+		</p>
+	* Este menu possibilita selecionar o  item de menu Premiar Atleta.
+
+	* Item de menu “Premiar Atleta”
+
+	* O item de menu Premiar Atleta abre uma tela que permite atribuir uma medalha a um atleta cadastrado. Primeiramente, por precaução contra possíveis alterações causadas por eventuais entradas acidentais de dados, o campo de Pesquisa, a caixa de combinação com os nomes de todos os atletas (com e sem medalhas), a caixa de combinação com todas as modalidades, a caixa de combinação com os três tipos de medalha, os botões Cadastrar, Atualizar, Deletar e Limpar ficam bloqueados. Eles desbloqueiam suas funções apenas quando o botão Novo é clicado.  Isso é uma maneira de fazermos o controle das atribuições destas medalhas.
+	* Quando as opções estiverem liberadas pode-se:
+		* Pesquisar automaticamente por atletas cadastrados no campo de texto específico. A tabela na tela mostra as informações relativas as medalhas que alguns atletas possuem. Ela mostra o nome, a modalidade em que a medalha foi adquirida e qual o tipo de medalha. Ao digitar o nome a tabela  organiza se automaticamente contribuindo para a usabilidade do programa. A ordem em que a tabela se dispõe é de acordo com a ordem de cadastro, ou seja, do mais antigo para o mais atual;
+		* Atribuir uma medalha a um atleta. Para isso as caixas de combinação “Atleta”, “Modalidade” e “Medalha” devem estar selecionados. As regras de cadastro seguem a seguinte ordem:
+			* O atleta só pode ter uma única medalha para uma modalidade específica;
+			* O atleta que já possui medalha naquela modalidade não pode receber a mesma medalha;
+			* Em uma modalidade só existe um atleta com medalha de ouro, outro com medalha de prata e por último um com medalha de bronze. Se necessário, cadastre uma nova modalidade ou esporte em outra tela de cadastro.
+
+	* Atualizar uma premiação existente. Para isto basta selecionar os campos nas caixas de combinação “Atleta”, “Modalidade” e “Medalha”. As regras para atualizar são as seguintes: 
+		* A um atleta não pode ser atribuído a mesma medalha de outro atleta existente;
+		* Para atualizar a premiação a medalha em uma modalidade deve estar livre.
+
+	* Excluir uma premiação existente. Para isto basta selecionar os campos nas caixas de combinação “Atleta”, “Modalidade” e “Medalha”. Para haver e exclusão a premiação atribuída a um atleta em uma modalidade com uma medalha deve existir na tabela exibida;
+
+	* Limpar o campo de texto e as caixas de combinação. Para isso basta clicar no botão Limpar. 
