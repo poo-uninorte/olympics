@@ -112,6 +112,8 @@
 	5.4. Botão limpar  
 	
 	* Caso queira resetar antes da conclusão, algum artefato que está na lacuna para cadastro, exclusão ou atualização. Pressione o botão limpar. Esta opção auxilia o usuário a descontinuar uma ação a contra gosto.
+	
+## MENU DE BUSCA / PÓDIO
 
 6. Menu “Busca”
 	<p align="center">
