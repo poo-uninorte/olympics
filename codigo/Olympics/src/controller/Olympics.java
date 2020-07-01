@@ -93,7 +93,7 @@ public class Olympics extends javax.swing.JFrame {
         lblTerceiro.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         lblTerceiro.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(lblTerceiro);
-        lblTerceiro.setBounds(560, 250, 99, 33);
+        lblTerceiro.setBounds(560, 250, 150, 33);
 
         lblPrimeiro.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         lblPrimeiro.setForeground(new java.awt.Color(0, 0, 0));
