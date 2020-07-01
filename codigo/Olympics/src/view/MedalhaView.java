@@ -46,7 +46,6 @@ public class MedalhaView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCodMedalhas = new javax.swing.JTextPane();
-        jLabel3 = new javax.swing.JLabel();
         btnNovoMedalha = new javax.swing.JToggleButton();
         txtNomeMedalha = new javax.swing.JTextField();
 
@@ -85,9 +84,6 @@ public class MedalhaView extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(txtCodMedalhas);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/kisspng-gold-medal-olympic-medal-bronze-medal-clip-art-olympic-medals-5a95ff404593e7.132185831519779648285.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-
         btnNovoMedalha.setText("Novo");
         btnNovoMedalha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,10 +118,9 @@ public class MedalhaView extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNomeMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 123, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnLimparMedalhas)
@@ -149,18 +144,13 @@ public class MedalhaView extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(12, 12, 12)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(96, 96, 96)
+                .addComponent(btnNovoMedalha)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnNovoMedalha)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLimparMedalhas)
-                            .addComponent(btnCadastrarrMedalhas))
-                        .addGap(50, 50, 50))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimparMedalhas)
+                    .addComponent(btnCadastrarrMedalhas))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -289,7 +279,6 @@ public class MedalhaView extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnNovoMedalha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCadastroMedalhas;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

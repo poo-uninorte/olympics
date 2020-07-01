@@ -24,7 +24,7 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
      */
     public ModalidadeBuscarView() {
         initComponents();
-        CarregarEsporte();
+       CarregarEsporte();
     }
 
     /**
@@ -39,10 +39,9 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         PainelModalidadeBuscarView = new javax.swing.JPanel();
         LbPesquisarModalidade = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BtnListarTodasModalidades = new javax.swing.JButton();
+        BtnAtualizarModalidades = new javax.swing.JButton();
         LbBuscarNomeModalidade = new javax.swing.JLabel();
         TxtNomeBuscarModalidade = new javax.swing.JTextField();
-        BtnBuscarModalidade = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbListaModalidade = new javax.swing.JTable();
         LbInformarNomeModalidade = new javax.swing.JLabel();
@@ -50,20 +49,24 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pódio de Modalidade");
 
-        LbPesquisarModalidade.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        PainelModalidadeBuscarView.setBackground(new java.awt.Color(255, 255, 255));
+
+        LbPesquisarModalidade.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        LbPesquisarModalidade.setForeground(new java.awt.Color(0, 0, 0));
         LbPesquisarModalidade.setText("PESQUISAR MODALIDADE");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        BtnListarTodasModalidades.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        BtnListarTodasModalidades.setText("LISTAR TODAS AS MODALIDADES");
-        BtnListarTodasModalidades.addActionListener(new java.awt.event.ActionListener() {
+        BtnAtualizarModalidades.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        BtnAtualizarModalidades.setText("Atualizar");
+        BtnAtualizarModalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnListarTodasModalidadesActionPerformed(evt);
+                BtnAtualizarModalidadesActionPerformed(evt);
             }
         });
 
         LbBuscarNomeModalidade.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        LbBuscarNomeModalidade.setForeground(new java.awt.Color(0, 0, 0));
         LbBuscarNomeModalidade.setText("BUSCAR POR UMA MODALIDADE");
 
         TxtNomeBuscarModalidade.addActionListener(new java.awt.event.ActionListener() {
@@ -71,11 +74,9 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
                 TxtNomeBuscarModalidadeActionPerformed(evt);
             }
         });
-
-        BtnBuscarModalidade.setText("OK");
-        BtnBuscarModalidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarModalidadeActionPerformed(evt);
+        TxtNomeBuscarModalidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtNomeBuscarModalidadeKeyReleased(evt);
             }
         });
 
@@ -91,28 +92,13 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         tbListaModalidade.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(tbListaModalidade);
 
+        LbInformarNomeModalidade.setForeground(new java.awt.Color(0, 0, 0));
         LbInformarNomeModalidade.setText("Informe o nome ");
 
         javax.swing.GroupLayout PainelModalidadeBuscarViewLayout = new javax.swing.GroupLayout(PainelModalidadeBuscarView);
         PainelModalidadeBuscarView.setLayout(PainelModalidadeBuscarViewLayout);
         PainelModalidadeBuscarViewLayout.setHorizontalGroup(
             PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
-                .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(BtnListarTodasModalidades))
-                    .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LbBuscarNomeModalidade)
-                            .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
-                                .addComponent(LbInformarNomeModalidade)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TxtNomeBuscarModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BtnBuscarModalidade)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelModalidadeBuscarViewLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,30 +108,39 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelModalidadeBuscarViewLayout.createSequentialGroup()
                         .addComponent(LbPesquisarModalidade)
                         .addGap(108, 108, 108))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelModalidadeBuscarViewLayout.createSequentialGroup()
-                .addGap(0, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+            .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
+                        .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LbBuscarNomeModalidade)
+                            .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
+                                .addComponent(LbInformarNomeModalidade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TxtNomeBuscarModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(59, 59, 59))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnAtualizarModalidades, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         PainelModalidadeBuscarViewLayout.setVerticalGroup(
             PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelModalidadeBuscarViewLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(LbPesquisarModalidade)
-                .addGap(18, 18, 18)
-                .addComponent(BtnListarTodasModalidades)
-                .addGap(32, 32, 32)
+                .addGap(80, 80, 80)
                 .addComponent(LbBuscarNomeModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PainelModalidadeBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNomeBuscarModalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscarModalidade)
                     .addComponent(LbInformarNomeModalidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnAtualizarModalidades)
+                .addGap(163, 163, 163))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,26 +151,27 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelModalidadeBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelModalidadeBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnListarTodasModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarTodasModalidadesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnListarTodasModalidadesActionPerformed
+    private void BtnAtualizarModalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtualizarModalidadesActionPerformed
+       CarregarEsporte();
+    }//GEN-LAST:event_BtnAtualizarModalidadesActionPerformed
 
     private void TxtNomeBuscarModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeBuscarModalidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNomeBuscarModalidadeActionPerformed
 
-    private void BtnBuscarModalidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarModalidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBuscarModalidadeActionPerformed
+    private void TxtNomeBuscarModalidadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtNomeBuscarModalidadeKeyReleased
+        CarregarEsportePorNome(TxtNomeBuscarModalidade.getText());
+    }//GEN-LAST:event_TxtNomeBuscarModalidadeKeyReleased
 
-    private void CarregarEsporte(){
+    
+     private void CarregarEsporte(){
         DefaultTableModel modeloTbMdalidade = (DefaultTableModel) tbListaModalidade.getModel();
         
         ListaModalidade = mController.Buscar();
@@ -190,6 +186,25 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
            
         }
     
+    }
+    
+    
+    private void CarregarEsportePorNome(String NomeModalidade){
+        DefaultTableModel modeloTbMdalidade = (DefaultTableModel) tbListaModalidade.getModel();
+        
+        ListaModalidade = mController.BuscarPorNome(NomeModalidade);
+        if(ListaModalidade.size()>0){
+        modeloTbMdalidade.setRowCount(0);
+        
+        for(int i = 0;i < ListaModalidade.size();i++){
+            modeloTbMdalidade.addRow(new Object []{
+                ListaModalidade.get(i).getID(),
+                ListaModalidade.get(i).getNome(),
+                ListaModalidade.get(i).getEsporte().getNome()
+                });
+           
+            }
+        }
     }
     
     
@@ -229,8 +244,7 @@ public class ModalidadeBuscarView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscarModalidade;
-    private javax.swing.JButton BtnListarTodasModalidades;
+    private javax.swing.JButton BtnAtualizarModalidades;
     private javax.swing.JLabel LbBuscarNomeModalidade;
     private javax.swing.JLabel LbInformarNomeModalidade;
     private javax.swing.JLabel LbPesquisarModalidade;

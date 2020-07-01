@@ -36,10 +36,9 @@ public class EsporteBuscarView extends javax.swing.JFrame {
         PainelEsporteBuscarView = new javax.swing.JPanel();
         LbPesquisarEsporte = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        BtnListarTodosEsportes = new javax.swing.JButton();
+        BtnAtualizar = new javax.swing.JButton();
         LbBuscarNomeEsporte = new javax.swing.JLabel();
         TxtNomeBuscarEsporte = new javax.swing.JTextField();
-        BtnBuscarEsporte = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbListaEsporte = new javax.swing.JTable();
 
@@ -48,17 +47,17 @@ public class EsporteBuscarView extends javax.swing.JFrame {
 
         PainelEsporteBuscarView.setBackground(new java.awt.Color(255, 255, 255));
 
-        LbPesquisarEsporte.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        LbPesquisarEsporte.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         LbPesquisarEsporte.setForeground(new java.awt.Color(0, 0, 0));
         LbPesquisarEsporte.setText("PESQUISAR ESPORTE");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
-        BtnListarTodosEsportes.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        BtnListarTodosEsportes.setText("Listar todos os esportes");
-        BtnListarTodosEsportes.addActionListener(new java.awt.event.ActionListener() {
+        BtnAtualizar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        BtnAtualizar.setText("Atualizar");
+        BtnAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnListarTodosEsportesActionPerformed(evt);
+                BtnAtualizarActionPerformed(evt);
             }
         });
 
@@ -69,13 +68,6 @@ public class EsporteBuscarView extends javax.swing.JFrame {
         TxtNomeBuscarEsporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtNomeBuscarEsporteActionPerformed(evt);
-            }
-        });
-
-        BtnBuscarEsporte.setText("OK");
-        BtnBuscarEsporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarEsporteActionPerformed(evt);
             }
         });
 
@@ -108,57 +100,54 @@ public class EsporteBuscarView extends javax.swing.JFrame {
         PainelEsporteBuscarView.setLayout(PainelEsporteBuscarViewLayout);
         PainelEsporteBuscarViewLayout.setHorizontalGroup(
             PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEsporteBuscarViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(400, 400, 400))
+            .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(LbBuscarNomeEsporte)
+                .addGap(18, 18, 18)
+                .addComponent(TxtNomeBuscarEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
                 .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LbBuscarNomeEsporte)
-                            .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
-                                .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TxtNomeBuscarEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LbPesquisarEsporte))
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnBuscarEsporte))))
+                        .addGap(63, 63, 63)
+                        .addComponent(LbPesquisarEsporte))
                     .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(BtnListarTodosEsportes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(BtnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEsporteBuscarViewLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
-                .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEsporteBuscarViewLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(141, 141, 141))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelEsporteBuscarViewLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))))
         );
         PainelEsporteBuscarViewLayout.setVerticalGroup(
             PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(LbPesquisarEsporte)
-                .addGap(34, 34, 34)
-                .addComponent(BtnListarTodosEsportes)
-                .addGap(27, 27, 27)
-                .addComponent(LbBuscarNomeEsporte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtNomeBuscarEsporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnBuscarEsporte))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(42, 42, 42)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                    .addComponent(LbBuscarNomeEsporte))
+                .addGroup(PainelEsporteBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel3))
+                    .addGroup(PainelEsporteBuscarViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnAtualizar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelEsporteBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelEsporteBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,17 +158,13 @@ public class EsporteBuscarView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnListarTodosEsportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListarTodosEsportesActionPerformed
-       
-    }//GEN-LAST:event_BtnListarTodosEsportesActionPerformed
+    private void BtnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtualizarActionPerformed
+        CarregarEsporte();
+    }//GEN-LAST:event_BtnAtualizarActionPerformed
 
     private void TxtNomeBuscarEsporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNomeBuscarEsporteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TxtNomeBuscarEsporteActionPerformed
-
-    private void BtnBuscarEsporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarEsporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBuscarEsporteActionPerformed
 
     private void CarregarEsporte(){
         DefaultTableModel modeloTbEsporte = (DefaultTableModel) tbListaEsporte.getModel();
@@ -237,8 +222,7 @@ public class EsporteBuscarView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscarEsporte;
-    private javax.swing.JButton BtnListarTodosEsportes;
+    private javax.swing.JButton BtnAtualizar;
     private javax.swing.JLabel LbBuscarNomeEsporte;
     private javax.swing.JLabel LbPesquisarEsporte;
     private javax.swing.JPanel PainelEsporteBuscarView;

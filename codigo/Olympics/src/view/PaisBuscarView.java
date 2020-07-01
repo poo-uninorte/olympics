@@ -25,6 +25,7 @@ public class PaisBuscarView extends javax.swing.JFrame {
         initComponents();
         tbListaPais.getColumnModel().getColumn(0).setMinWidth(0);
         tbListaPais.getColumnModel().getColumn(0).setMaxWidth(0);
+        Podio();
         CarregaPais();
     }
 
@@ -45,17 +46,26 @@ public class PaisBuscarView extends javax.swing.JFrame {
         tbListaPais = new javax.swing.JTable();
         LbInformarNomePais = new javax.swing.JLabel();
         btnAtualizar = new javax.swing.JButton();
+        lblSegundoPais = new javax.swing.JLabel();
+        lblPrimeiroPais = new javax.swing.JLabel();
+        lblTerceiroPais = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pódio de Pais");
 
         PainelPaisBuscarView.setBackground(new java.awt.Color(255, 255, 255));
+        PainelPaisBuscarView.setLayout(null);
 
         LbPesquisarPais.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
         LbPesquisarPais.setForeground(new java.awt.Color(0, 0, 0));
         LbPesquisarPais.setText("PÓDIO DE PAÍS");
+        PainelPaisBuscarView.add(LbPesquisarPais);
+        LbPesquisarPais.setBounds(30, 20, 268, 47);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        PainelPaisBuscarView.add(jLabel3);
+        jLabel3.setBounds(477, 326, 0, 0);
 
         TxtNomeBuscarPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +77,8 @@ public class PaisBuscarView extends javax.swing.JFrame {
                 TxtNomeBuscarPaisKeyReleased(evt);
             }
         });
+        PainelPaisBuscarView.add(TxtNomeBuscarPais);
+        TxtNomeBuscarPais.setBounds(34, 267, 253, 24);
 
         tbListaPais.setAutoCreateRowSorter(true);
         tbListaPais.setBackground(new java.awt.Color(255, 255, 255));
@@ -103,8 +115,13 @@ public class PaisBuscarView extends javax.swing.JFrame {
             tbListaPais.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        PainelPaisBuscarView.add(jScrollPane2);
+        jScrollPane2.setBounds(6, 313, 465, 160);
+
         LbInformarNomePais.setForeground(new java.awt.Color(0, 0, 0));
         LbInformarNomePais.setText("Informe o nome ");
+        PainelPaisBuscarView.add(LbInformarNomePais);
+        LbInformarNomePais.setBounds(34, 241, 92, 16);
 
         btnAtualizar.setText("Atualizar");
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,64 +129,37 @@ public class PaisBuscarView extends javax.swing.JFrame {
                 btnAtualizarActionPerformed(evt);
             }
         });
+        PainelPaisBuscarView.add(btnAtualizar);
+        btnAtualizar.setBounds(391, 263, 80, 32);
 
-        javax.swing.GroupLayout PainelPaisBuscarViewLayout = new javax.swing.GroupLayout(PainelPaisBuscarView);
-        PainelPaisBuscarView.setLayout(PainelPaisBuscarViewLayout);
-        PainelPaisBuscarViewLayout.setHorizontalGroup(
-            PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(LbInformarNomePais)
-                                    .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAtualizar))
-                            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                                .addComponent(LbPesquisarPais)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(141, 141, 141))
-        );
-        PainelPaisBuscarViewLayout.setVerticalGroup(
-            PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addContainerGap(227, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(193, 193, 193))
-            .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                .addGroup(PainelPaisBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(btnAtualizar))
-                    .addGroup(PainelPaisBuscarViewLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(LbPesquisarPais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(LbInformarNomePais)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtNomeBuscarPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        lblSegundoPais.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblSegundoPais.setForeground(new java.awt.Color(0, 0, 0));
+        PainelPaisBuscarView.add(lblSegundoPais);
+        lblSegundoPais.setBounds(100, 140, 110, 30);
+
+        lblPrimeiroPais.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblPrimeiroPais.setForeground(new java.awt.Color(0, 0, 0));
+        PainelPaisBuscarView.add(lblPrimeiroPais);
+        lblPrimeiroPais.setBounds(220, 110, 120, 30);
+
+        lblTerceiroPais.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblTerceiroPais.setForeground(new java.awt.Color(0, 0, 0));
+        PainelPaisBuscarView.add(lblTerceiroPais);
+        lblTerceiroPais.setBounds(320, 140, 110, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/podio-atleta.png"))); // NOI18N
+        PainelPaisBuscarView.add(jLabel1);
+        jLabel1.setBounds(70, 123, 350, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
+            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelPaisBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
         );
 
         pack();
@@ -241,6 +231,17 @@ public class PaisBuscarView extends javax.swing.JFrame {
     
     }
     
+     
+     public void Podio(){
+         ListaPais = pController.BuscaTotalComMedalha();
+         
+         lblPrimeiroPais.setText(ListaPais.get(0).getNome());
+         lblSegundoPais.setText(ListaPais.get(1).getNome());
+         lblTerceiroPais.setText(ListaPais.get(2).getNome());     
+     }
+     
+     
+     
     /**
      * @param args the command line arguments
      */
@@ -282,8 +283,12 @@ public class PaisBuscarView extends javax.swing.JFrame {
     private javax.swing.JPanel PainelPaisBuscarView;
     private javax.swing.JTextField TxtNomeBuscarPais;
     private javax.swing.JButton btnAtualizar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblPrimeiroPais;
+    private javax.swing.JLabel lblSegundoPais;
+    private javax.swing.JLabel lblTerceiroPais;
     private javax.swing.JTable tbListaPais;
     // End of variables declaration//GEN-END:variables
 }

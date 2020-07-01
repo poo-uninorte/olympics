@@ -29,6 +29,7 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         TbListaAtleta.getColumnModel().getColumn(0).setMaxWidth(200);
         TbListaAtleta.getColumnModel().getColumn(1).setMinWidth(100);
         TbListaAtleta.getColumnModel().getColumn(1).setMaxWidth(100);
+        podio();
     }
 
     /**
@@ -48,17 +49,26 @@ public class AtletaBuscarView extends javax.swing.JFrame {
         TbListaAtleta = new javax.swing.JTable();
         LbInformarNomeAtleta = new javax.swing.JLabel();
         btnAtualizar = new javax.swing.JButton();
+        lblTerceiroAtleta = new javax.swing.JLabel();
+        lblPrimeiroAtleta = new javax.swing.JLabel();
+        lblSegundoAtleta = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pódio de Atletas");
 
         PainelAtletaBuscarView.setBackground(new java.awt.Color(255, 255, 255));
+        PainelAtletaBuscarView.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("PÓDIO DE ATLETAS");
+        PainelAtletaBuscarView.add(jLabel1);
+        jLabel1.setBounds(33, 22, 351, 47);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        PainelAtletaBuscarView.add(jLabel3);
+        jLabel3.setBounds(513, 316, 0, 0);
 
         TxtNomeAtleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +80,8 @@ public class AtletaBuscarView extends javax.swing.JFrame {
                 TxtNomeAtletaKeyReleased(evt);
             }
         });
+        PainelAtletaBuscarView.add(TxtNomeAtleta);
+        TxtNomeAtleta.setBounds(33, 231, 250, 24);
 
         TbListaAtleta.setAutoCreateRowSorter(true);
         TbListaAtleta.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,8 +112,13 @@ public class AtletaBuscarView extends javax.swing.JFrame {
             TbListaAtleta.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        PainelAtletaBuscarView.add(jScrollPane2);
+        jScrollPane2.setBounds(6, 277, 501, 226);
+
         LbInformarNomeAtleta.setForeground(new java.awt.Color(0, 0, 0));
         LbInformarNomeAtleta.setText("Informe o nome ");
+        PainelAtletaBuscarView.add(LbInformarNomeAtleta);
+        LbInformarNomeAtleta.setBounds(33, 205, 92, 16);
 
         btnAtualizar.setText("Atualizar");
         btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,61 +126,37 @@ public class AtletaBuscarView extends javax.swing.JFrame {
                 btnAtualizarActionPerformed(evt);
             }
         });
+        PainelAtletaBuscarView.add(btnAtualizar);
+        btnAtualizar.setBounds(427, 227, 80, 32);
 
-        javax.swing.GroupLayout PainelAtletaBuscarViewLayout = new javax.swing.GroupLayout(PainelAtletaBuscarView);
-        PainelAtletaBuscarView.setLayout(PainelAtletaBuscarViewLayout);
-        PainelAtletaBuscarViewLayout.setHorizontalGroup(
-            PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAtualizar)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(141, 141, 141))
-            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LbInformarNomeAtleta)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        PainelAtletaBuscarViewLayout.setVerticalGroup(
-            PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel1)
-                .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(193, 193, 193))
-                    .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                        .addGroup(PainelAtletaBuscarViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(btnAtualizar))
-                            .addGroup(PainelAtletaBuscarViewLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(LbInformarNomeAtleta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtNomeAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(14, Short.MAX_VALUE))))
-        );
+        lblTerceiroAtleta.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblTerceiroAtleta.setForeground(new java.awt.Color(0, 0, 0));
+        PainelAtletaBuscarView.add(lblTerceiroAtleta);
+        lblTerceiroAtleta.setBounds(70, 110, 120, 30);
+
+        lblPrimeiroAtleta.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblPrimeiroAtleta.setForeground(new java.awt.Color(0, 0, 0));
+        PainelAtletaBuscarView.add(lblPrimeiroAtleta);
+        lblPrimeiroAtleta.setBounds(210, 80, 140, 30);
+
+        lblSegundoAtleta.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        lblSegundoAtleta.setForeground(new java.awt.Color(0, 0, 0));
+        PainelAtletaBuscarView.add(lblSegundoAtleta);
+        lblSegundoAtleta.setBounds(310, 119, 130, 30);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/podio-atleta.png"))); // NOI18N
+        PainelAtletaBuscarView.add(jLabel2);
+        jLabel2.setBounds(60, 100, 350, 100);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.PREFERRED_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PainelAtletaBuscarView, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
         );
 
         pack();
@@ -222,6 +215,17 @@ public class AtletaBuscarView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+      
+      
+      
+    public void podio(){
+        ListaAtleta = aController.BuscarTotalComMedalha();
+        lblPrimeiroAtleta.setText(ListaAtleta.get(0).getNome());
+        lblSegundoAtleta.setText(ListaAtleta.get(1).getNome());
+        lblTerceiroAtleta.setText(ListaAtleta.get(2).getNome());
+    
+    } 
+      
     public static void main(String args[]) {
                 
         /* Set the Nimbus look and feel */
@@ -262,7 +266,11 @@ public class AtletaBuscarView extends javax.swing.JFrame {
     private javax.swing.JTextField TxtNomeAtleta;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblPrimeiroAtleta;
+    private javax.swing.JLabel lblSegundoAtleta;
+    private javax.swing.JLabel lblTerceiroAtleta;
     // End of variables declaration//GEN-END:variables
 }
