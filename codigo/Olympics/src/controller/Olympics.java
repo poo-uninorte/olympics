@@ -88,7 +88,7 @@ public class Olympics extends javax.swing.JFrame {
         lblSegundo.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         lblSegundo.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(lblSegundo);
-        lblSegundo.setBounds(210, 240, 99, 33);
+        lblSegundo.setBounds(169, 240, 150, 33);
 
         lblTerceiro.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         lblTerceiro.setForeground(new java.awt.Color(0, 0, 0));
@@ -98,7 +98,7 @@ public class Olympics extends javax.swing.JFrame {
         lblPrimeiro.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
         lblPrimeiro.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(lblPrimeiro);
-        lblPrimeiro.setBounds(390, 190, 99, 33);
+        lblPrimeiro.setBounds(369, 190, 190, 33);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/podio.png"))); // NOI18N
         jPanel1.add(jLabel4);
