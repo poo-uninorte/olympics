@@ -73,7 +73,7 @@ public class AtletaDAO{
        ResultSet rs = null;
        
        String sql="SELECT at.ID_Atleta as idAtleta, at.Nome as nomeAtleta,at.Genero as genero ,pa.Nome pais FROM "
-               + "Pais pa join Atleta at on pa.ID_Pais = at.ID_Pais "
+               + "Atleta at left join Pais pa on pa.ID_Pais = at.ID_Pais "
                + "where at.Nome LIKE ? ";
                
        
