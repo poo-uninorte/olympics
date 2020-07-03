@@ -1,4 +1,9 @@
-﻿# Trabalho de POO (Quadro de Medalhas das Olimpiadas)
+# Apresentação do Software (Quadro de Medalhas das Olimpiadas) 
+
+[![Apresentação de Trabalho de POO](http://img.youtube.com/vi/fCUSP0l5Ck4/0.jpg)](http://www.youtube.com/watch?v=fCUSP0l5Ck4 "Trabalho de POO")
+
+
+# Trabalho de POO (Quadro de Medalhas das Olimpiadas)
 
 
 <p align="center">
